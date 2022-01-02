@@ -566,13 +566,14 @@ public class MenuPP extends JFrame {
     }//GEN-LAST:event_mnuClientesActionPerformed
 
     private void mnuIngresarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuIngresarVentaActionPerformed
-        VentaPantallaPrincipalBotonesGrillaUI ventaPP = new VentaPantallaPrincipalBotonesGrillaUI(this, true);
+        //VentaPantallaPrincipalBotonesGrillaUI ventaPP = new VentaPantallaPrincipalBotonesGrillaUI(this, true);
+        VentaPantallaPrincipalUI ventaPP = new VentaPantallaPrincipalUI(this, true);
         ventaPP.setLocationRelativeTo(null);
         ventaPP.setVisible(true);
     }//GEN-LAST:event_mnuIngresarVentaActionPerformed
 
     private void mnuAyudaContenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAyudaContenidoActionPerformed
-        VentaPantallaPrincipalComboCantUI ventaPP = new VentaPantallaPrincipalComboCantUI(this, true);
+        VentaPantallaPrincipalBorrarloUI ventaPP = new VentaPantallaPrincipalBorrarloUI(this, true);
         //VentaPantallaPrincipalV3UI ventaPP = new VentaPantallaPrincipalComboCantUI(this, true);
         ventaPP.setLocationRelativeTo(null);
         ventaPP.setVisible(true);

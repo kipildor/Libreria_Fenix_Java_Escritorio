@@ -87,21 +87,21 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
     
     public void inicializarPantalla(){
         InicializarPanelClienteEnVenta();
-        pnlBuscarCliente.setVisible(false);
-        txtDocumento.setText("");
-        btnAceptarBuscarCliente.setEnabled(false);
-        pnlSubPanelBuscarCliente.setVisible(false);
+//        pnlBuscarCliente.setVisible(false);
+//        txtDocumento.setText("");
+//        btnAceptarBuscarCliente.setEnabled(false);
+//        pnlSubPanelBuscarCliente.setVisible(false);
         
         listaLibrosDeVenta.clear();//elimino los elementos de la lista, la dejo vacia
-        InicializarPanelBuscarLibro();
-        pnlBuscarLibro.setVisible(false);
+//        InicializarPanelBuscarLibro();
+//        pnlBuscarLibro.setVisible(false);
         /*** inicializar grilla venta vacias ***/
         GrillaBase();
         
         lblPrecioFinal.setText("0,00");
         
-        ImagenFondo imgLbl = new ImagenFondo();
-        imgLbl.pintarImagenEnLabel(lblLogo, "/Images/LogoTextoAbajo_FondoTransparente.png");
+        //ImagenFondo imgLbl = new ImagenFondo();
+        //imgLbl.pintarImagenEnLabel(lblLogo, "/Images/LogoTextoAbajo_FondoTransparente.png");
         
         //txtNumComprobante.setText("00001 - " + NativeString.substr("000000" + String.valueOf(ventasdao.getMaxNumCbte() + 1), 1, 8));
         VentaDAO vDAO = new VentaDAO();
@@ -130,57 +130,57 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         lblNroDocCliente.setText("n° "+ Long.toString(c.getNrodocumento()));
     }
     
-    private void InicializarPanelBuscarLibro(){
-        lblDatosSeleccionados1.setText("");
-        lblDatosSeleccionados2.setText("");
-        lblDatosSeleccionados3.setText("");
-        txtCantidadDelLibro.setText("0");
-        txtCantidadDelLibro.setEnabled(false);
-        btnAceptarBuscarLibro.setEnabled(false);
-        pnlSubPanelBuscarLibro.setVisible(false);
-        txtNombreDelLibro.setText("");
-        /*** inicializar grilla vacia  ***/
-        GrillaResultLibrosVacia();
-        pnlBuscarLibro.setVisible(false);
-        //l.setIdlibro(0);//¿es necesario?????
-    }
+//    private void InicializarPanelBuscarLibro(){
+//        lblDatosSeleccionados1.setText("");
+//        lblDatosSeleccionados2.setText("");
+//        lblDatosSeleccionados3.setText("");
+//        txtCantidadDelLibro.setText("0");
+//        txtCantidadDelLibro.setEnabled(false);
+//        btnAceptarBuscarLibro.setEnabled(false);
+//        pnlSubPanelBuscarLibro.setVisible(false);
+//        txtNombreDelLibro.setText("");
+//        /*** inicializar grilla vacia  ***/
+//        GrillaResultLibrosVacia();
+//        pnlBuscarLibro.setVisible(false);
+//        //l.setIdlibro(0);//¿es necesario?????
+//    }
     
-    private void GrillaResultLibrosVacia() {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("ID del Libro");  // Acá definimos las Columnas del Modelo
-        modelo.addColumn("ISBN");
-        modelo.addColumn("Nombre del Libro");
-        modelo.addColumn("Autor");
-        modelo.addColumn("Páginas");
-        modelo.addColumn("Editorial");
-        modelo.addColumn("Fecha de Public");
-        modelo.addColumn("Precio");
-        modelo.addColumn("ID Tema");
-        modelo.addColumn("Género");
-        // Acá cargamos las FILAS del Modelo
-        Object[] datos = new Object[10];// 
-        
-        tblResultLibros.setModel(modelo);
-        tblResultLibros.getColumnModel().getColumn(0).setMaxWidth(0);
-        tblResultLibros.getColumnModel().getColumn(0).setMinWidth(0);
-        tblResultLibros.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
-        tblResultLibros.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
-        
-        tblResultLibros.getColumnModel().getColumn(4).setMaxWidth(0);
-        tblResultLibros.getColumnModel().getColumn(4).setMinWidth(0);
-        tblResultLibros.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(0);
-        tblResultLibros.getTableHeader().getColumnModel().getColumn(4).setMinWidth(0);
-        
-        tblResultLibros.getColumnModel().getColumn(6).setMaxWidth(0);
-        tblResultLibros.getColumnModel().getColumn(6).setMinWidth(0);
-        tblResultLibros.getTableHeader().getColumnModel().getColumn(6).setMaxWidth(0);
-        tblResultLibros.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
-        
-        tblResultLibros.getColumnModel().getColumn(8).setMaxWidth(0);
-        tblResultLibros.getColumnModel().getColumn(8).setMinWidth(0);
-        tblResultLibros.getTableHeader().getColumnModel().getColumn(8).setMaxWidth(0);
-        tblResultLibros.getTableHeader().getColumnModel().getColumn(8).setMinWidth(0);  
-    }
+//    private void GrillaResultLibrosVacia() {
+//        DefaultTableModel modelo = new DefaultTableModel();
+//        modelo.addColumn("ID del Libro");  // Acá definimos las Columnas del Modelo
+//        modelo.addColumn("ISBN");
+//        modelo.addColumn("Nombre del Libro");
+//        modelo.addColumn("Autor");
+//        modelo.addColumn("Páginas");
+//        modelo.addColumn("Editorial");
+//        modelo.addColumn("Fecha de Public");
+//        modelo.addColumn("Precio");
+//        modelo.addColumn("ID Tema");
+//        modelo.addColumn("Género");
+//        // Acá cargamos las FILAS del Modelo
+//        Object[] datos = new Object[10];// 
+//        
+//        tblResultLibros.setModel(modelo);
+//        tblResultLibros.getColumnModel().getColumn(0).setMaxWidth(0);
+//        tblResultLibros.getColumnModel().getColumn(0).setMinWidth(0);
+//        tblResultLibros.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+//        tblResultLibros.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
+//        
+//        tblResultLibros.getColumnModel().getColumn(4).setMaxWidth(0);
+//        tblResultLibros.getColumnModel().getColumn(4).setMinWidth(0);
+//        tblResultLibros.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(0);
+//        tblResultLibros.getTableHeader().getColumnModel().getColumn(4).setMinWidth(0);
+//        
+//        tblResultLibros.getColumnModel().getColumn(6).setMaxWidth(0);
+//        tblResultLibros.getColumnModel().getColumn(6).setMinWidth(0);
+//        tblResultLibros.getTableHeader().getColumnModel().getColumn(6).setMaxWidth(0);
+//        tblResultLibros.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
+//        
+//        tblResultLibros.getColumnModel().getColumn(8).setMaxWidth(0);
+//        tblResultLibros.getColumnModel().getColumn(8).setMinWidth(0);
+//        tblResultLibros.getTableHeader().getColumnModel().getColumn(8).setMaxWidth(0);
+//        tblResultLibros.getTableHeader().getColumnModel().getColumn(8).setMinWidth(0);  
+//    }
         
     private void CargarLibrosDeVentaGrid() {
         tblLibrosVenta.setDefaultRenderer(Object.class, new Render());
@@ -313,14 +313,17 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane3 = new javax.swing.JScrollPane();
-        pnlCont = new javax.swing.JPanel();
+        pnlFondoPP = new javax.swing.JPanel();
         pnlEncabezado = new javax.swing.JPanel();
-        lblLogo = new javax.swing.JLabel();
+        lblLogoEncabezado = new javax.swing.JLabel();
         lblTituloVentaPP = new javax.swing.JLabel();
+        lblXCerrar = new javax.swing.JLabel();
+        pnlCont = new javax.swing.JPanel();
+        pnlDatosEncabezado = new javax.swing.JPanel();
         lblNumComprobante = new javax.swing.JLabel();
         txtNumComprobante = new javax.swing.JTextField();
         lblFechaActual = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         pnlCliente = new javax.swing.JPanel();
         lblTituloSeccionCliente = new javax.swing.JLabel();
         lblIDCliente = new javax.swing.JLabel();
@@ -329,32 +332,8 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         lblTipoDocumentoCliente = new javax.swing.JLabel();
         lblNroDocCliente = new javax.swing.JLabel();
         lblBotonCargarCliente = new javax.swing.JLabel();
-        pnlBuscarCliente = new javax.swing.JPanel();
-        lblTituloBuscarCliente = new javax.swing.JLabel();
-        lblDocumento = new javax.swing.JLabel();
-        txtDocumento = new javax.swing.JTextField();
-        btnBuscarCliente = new javax.swing.JButton();
-        pnlSubPanelBuscarCliente = new javax.swing.JPanel();
-        lblResultadoBuscarCliente = new javax.swing.JLabel();
-        btnAceptarBuscarCliente = new javax.swing.JButton();
-        btnCancelarBuscarCliente = new javax.swing.JButton();
         pnlLibrosVenta = new javax.swing.JPanel();
         btnBuscarLibro = new javax.swing.JButton();
-        pnlBuscarLibro = new javax.swing.JPanel();
-        lblTituloBuscarLibro = new javax.swing.JLabel();
-        lblNombreDelLibro = new javax.swing.JLabel();
-        txtNombreDelLibro = new javax.swing.JTextField();
-        btnBuscarNombreDelLibro = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblResultLibros = new javax.swing.JTable();
-        pnlSubPanelBuscarLibro = new javax.swing.JPanel();
-        lblDatosSeleccionados1 = new javax.swing.JLabel();
-        lblDatosSeleccionados2 = new javax.swing.JLabel();
-        lblDatosSeleccionados3 = new javax.swing.JLabel();
-        lblCantidadDelLibro = new javax.swing.JLabel();
-        txtCantidadDelLibro = new javax.swing.JTextField();
-        btnAceptarBuscarLibro = new javax.swing.JButton();
-        btnCancelarBuscarLibro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLibrosVenta = new javax.swing.JTable();
         lblTextoPreciofinal = new javax.swing.JLabel();
@@ -365,103 +344,115 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(153, 153, 255));
+        setMaximumSize(new java.awt.Dimension(820, 980));
+        setMinimumSize(new java.awt.Dimension(820, 980));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(820, 980));
 
-        pnlCont.setBackground(new java.awt.Color(153, 153, 255));
-        pnlCont.setAutoscrolls(true);
-        pnlCont.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlFondoPP.setMinimumSize(new java.awt.Dimension(820, 980));
+        pnlFondoPP.setPreferredSize(new java.awt.Dimension(820, 980));
+        pnlFondoPP.setLayout(new java.awt.BorderLayout());
 
-        pnlEncabezado.setBackground(new java.awt.Color(145, 145, 255));
+        pnlEncabezado.setMaximumSize(new java.awt.Dimension(820, 40));
+        pnlEncabezado.setMinimumSize(new java.awt.Dimension(820, 40));
+        pnlEncabezado.setPreferredSize(new java.awt.Dimension(820, 40));
 
-        lblLogo.setBackground(new java.awt.Color(204, 204, 255));
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LogoTextoAbajo_FondoTransparente_mediano.png"))); // NOI18N
-        lblLogo.setOpaque(true);
+        lblLogoEncabezado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/FenixDoradoTextoDerechaBlanco35Alto.png"))); // NOI18N
 
-        lblTituloVentaPP.setFont(new java.awt.Font("Tahoma", 1, 40)); // NOI18N
+        lblTituloVentaPP.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblTituloVentaPP.setText("Venta");
 
-        lblNumComprobante.setBackground(new java.awt.Color(204, 204, 255));
-        lblNumComprobante.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblNumComprobante.setText("n° de comprobante");
-        lblNumComprobante.setOpaque(true);
-
-        txtNumComprobante.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        lblFechaActual.setBackground(new java.awt.Color(204, 204, 255));
-        lblFechaActual.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblFechaActual.setText("Fecha");
-        lblFechaActual.setOpaque(true);
+        lblXCerrar.setBackground(new java.awt.Color(255, 0, 0));
+        lblXCerrar.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblXCerrar.setForeground(new java.awt.Color(255, 255, 255));
+        lblXCerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblXCerrar.setText("X");
+        lblXCerrar.setMaximumSize(new java.awt.Dimension(40, 40));
+        lblXCerrar.setMinimumSize(new java.awt.Dimension(40, 40));
+        lblXCerrar.setPreferredSize(new java.awt.Dimension(40, 40));
 
         javax.swing.GroupLayout pnlEncabezadoLayout = new javax.swing.GroupLayout(pnlEncabezado);
         pnlEncabezado.setLayout(pnlEncabezadoLayout);
         pnlEncabezadoLayout.setHorizontalGroup(
             pnlEncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEncabezadoLayout.createSequentialGroup()
-                .addContainerGap(383, Short.MAX_VALUE)
-                .addComponent(lblNumComprobante)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtNumComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+            .addGroup(pnlEncabezadoLayout.createSequentialGroup()
+                .addComponent(lblLogoEncabezado, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 525, Short.MAX_VALUE)
+                .addComponent(lblXCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pnlEncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlEncabezadoLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(40, 40, 40)
+                    .addGap(370, 370, 370)
                     .addComponent(lblTituloVentaPP)
-                    .addGap(214, 214, 214)
-                    .addComponent(lblFechaActual)
-                    .addGap(0, 213, Short.MAX_VALUE)))
+                    .addContainerGap(371, Short.MAX_VALUE)))
         );
         pnlEncabezadoLayout.setVerticalGroup(
             pnlEncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEncabezadoLayout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addGroup(pnlEncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNumComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNumComprobante))
-                .addGap(19, 19, 19))
+            .addComponent(lblLogoEncabezado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnlEncabezadoLayout.createSequentialGroup()
+                .addComponent(lblXCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
             .addGroup(pnlEncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlEncabezadoLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(pnlEncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(pnlEncabezadoLayout.createSequentialGroup()
-                            .addGap(20, 20, 20)
-                            .addComponent(lblTituloVentaPP))
-                        .addGroup(pnlEncabezadoLayout.createSequentialGroup()
-                            .addGap(12, 12, 12)
-                            .addComponent(lblFechaActual)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(5, 5, 5)
+                    .addComponent(lblTituloVentaPP)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        pnlCont.add(pnlEncabezado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 810, 100));
+        pnlFondoPP.add(pnlEncabezado, java.awt.BorderLayout.NORTH);
+
+        pnlCont.setBackground(new java.awt.Color(153, 153, 255));
+        pnlCont.setAutoscrolls(true);
+
+        pnlDatosEncabezado.setBackground(new java.awt.Color(145, 145, 255));
+        pnlDatosEncabezado.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblNumComprobante.setBackground(new java.awt.Color(204, 204, 255));
+        lblNumComprobante.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblNumComprobante.setText("n° de comprobante");
+        pnlDatosEncabezado.add(lblNumComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, -1, -1));
+
+        txtNumComprobante.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtNumComprobante.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        pnlDatosEncabezado.add(txtNumComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(602, 60, 160, -1));
+
+        lblFechaActual.setBackground(new java.awt.Color(204, 204, 255));
+        lblFechaActual.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblFechaActual.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblFechaActual.setText("Fecha");
+        pnlDatosEncabezado.add(lblFechaActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 20, 250, -1));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LogoTextoAbajo_FondoTransparente_mediano.png"))); // NOI18N
+        pnlDatosEncabezado.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 210, 80));
 
         pnlCliente.setBackground(new java.awt.Color(204, 204, 255));
         pnlCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTituloSeccionCliente.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lblTituloSeccionCliente.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblTituloSeccionCliente.setText("Cliente");
-        pnlCliente.add(lblTituloSeccionCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 14, -1, -1));
+        pnlCliente.add(lblTituloSeccionCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         lblIDCliente.setText("ID Cliente");
         pnlCliente.add(lblIDCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
 
         lblNombreCliente.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblNombreCliente.setText("Nombre: ");
-        pnlCliente.add(lblNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 49, 375, -1));
+        pnlCliente.add(lblNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 375, -1));
 
         lblEmailCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblEmailCliente.setText("E-mail: ");
-        pnlCliente.add(lblEmailCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 290, -1));
+        pnlCliente.add(lblEmailCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 380, -1));
 
         lblTipoDocumentoCliente.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblTipoDocumentoCliente.setText("TipoDoc");
-        pnlCliente.add(lblTipoDocumentoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 78, 254, -1));
+        pnlCliente.add(lblTipoDocumentoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 254, -1));
 
         lblNroDocCliente.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblNroDocCliente.setText("n° de documento");
-        pnlCliente.add(lblNroDocCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 78, 203, -1));
+        pnlCliente.add(lblNroDocCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 203, -1));
 
         lblBotonCargarCliente.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblBotonCargarCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBotonCargarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Iconos_30px/upload-user.png"))); // NOI18N
         lblBotonCargarCliente.setText("Cargar Cliente");
         lblBotonCargarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -475,110 +466,7 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
                 lblBotonCargarClienteMouseEntered(evt);
             }
         });
-        pnlCliente.add(lblBotonCargarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
-
-        pnlCont.add(pnlCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
-
-        pnlBuscarCliente.setBackground(new java.awt.Color(204, 204, 255));
-
-        lblTituloBuscarCliente.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        lblTituloBuscarCliente.setText("Buscar Cliente por el n° de Documento.");
-
-        lblDocumento.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        lblDocumento.setText("Documento");
-
-        txtDocumento.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-
-        btnBuscarCliente.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        btnBuscarCliente.setText("Buscar");
-        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarClienteActionPerformed(evt);
-            }
-        });
-
-        pnlSubPanelBuscarCliente.setBackground(new java.awt.Color(255, 204, 153));
-
-        lblResultadoBuscarCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        btnAceptarBuscarCliente.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        btnAceptarBuscarCliente.setText("Aceptar");
-        btnAceptarBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarBuscarClienteActionPerformed(evt);
-            }
-        });
-
-        btnCancelarBuscarCliente.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        btnCancelarBuscarCliente.setText("Cancelar");
-        btnCancelarBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarBuscarClienteActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlSubPanelBuscarClienteLayout = new javax.swing.GroupLayout(pnlSubPanelBuscarCliente);
-        pnlSubPanelBuscarCliente.setLayout(pnlSubPanelBuscarClienteLayout);
-        pnlSubPanelBuscarClienteLayout.setHorizontalGroup(
-            pnlSubPanelBuscarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSubPanelBuscarClienteLayout.createSequentialGroup()
-                .addGroup(pnlSubPanelBuscarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlSubPanelBuscarClienteLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(lblResultadoBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlSubPanelBuscarClienteLayout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(btnAceptarBuscarCliente)
-                        .addGap(44, 44, 44)
-                        .addComponent(btnCancelarBuscarCliente)))
-                .addContainerGap(41, Short.MAX_VALUE))
-        );
-        pnlSubPanelBuscarClienteLayout.setVerticalGroup(
-            pnlSubPanelBuscarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSubPanelBuscarClienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblResultadoBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlSubPanelBuscarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptarBuscarCliente)
-                    .addComponent(btnCancelarBuscarCliente))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout pnlBuscarClienteLayout = new javax.swing.GroupLayout(pnlBuscarCliente);
-        pnlBuscarCliente.setLayout(pnlBuscarClienteLayout);
-        pnlBuscarClienteLayout.setHorizontalGroup(
-            pnlBuscarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBuscarClienteLayout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addGroup(pnlBuscarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlBuscarClienteLayout.createSequentialGroup()
-                        .addComponent(lblTituloBuscarCliente)
-                        .addGap(28, 28, 28))
-                    .addComponent(pnlSubPanelBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlBuscarClienteLayout.createSequentialGroup()
-                        .addComponent(lblDocumento)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(99, Short.MAX_VALUE))
-        );
-        pnlBuscarClienteLayout.setVerticalGroup(
-            pnlBuscarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBuscarClienteLayout.createSequentialGroup()
-                .addComponent(lblTituloBuscarCliente)
-                .addGap(18, 18, 18)
-                .addGroup(pnlBuscarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDocumento)
-                    .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarCliente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlSubPanelBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
-        );
-
-        pnlCont.add(pnlBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 740, -1));
+        pnlCliente.add(lblBotonCargarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 210, 40));
 
         pnlLibrosVenta.setBackground(new java.awt.Color(204, 255, 255));
         pnlLibrosVenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -589,158 +477,7 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
                 btnBuscarLibroActionPerformed(evt);
             }
         });
-        pnlLibrosVenta.add(btnBuscarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(629, 12, -1, -1));
-
-        pnlBuscarLibro.setBackground(new java.awt.Color(153, 204, 255));
-
-        lblTituloBuscarLibro.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        lblTituloBuscarLibro.setText("Buscar Libro");
-
-        lblNombreDelLibro.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        lblNombreDelLibro.setText("Nombre del Libro");
-
-        txtNombreDelLibro.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-
-        btnBuscarNombreDelLibro.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        btnBuscarNombreDelLibro.setText("Buscar");
-        btnBuscarNombreDelLibro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarNombreDelLibroActionPerformed(evt);
-            }
-        });
-
-        tblResultLibros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tblResultLibros.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblResultLibrosMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tblResultLibros);
-
-        pnlSubPanelBuscarLibro.setOpaque(false);
-
-        lblDatosSeleccionados1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblDatosSeleccionados1.setText("jLabel1");
-
-        lblDatosSeleccionados2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblDatosSeleccionados2.setText("jLabel2");
-
-        lblDatosSeleccionados3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblDatosSeleccionados3.setText("jLabel3");
-
-        lblCantidadDelLibro.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblCantidadDelLibro.setText("Cantidad:");
-
-        btnAceptarBuscarLibro.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        btnAceptarBuscarLibro.setText("Aceptar");
-        btnAceptarBuscarLibro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarBuscarLibroActionPerformed(evt);
-            }
-        });
-
-        btnCancelarBuscarLibro.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        btnCancelarBuscarLibro.setText("Cancelar");
-        btnCancelarBuscarLibro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarBuscarLibroActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlSubPanelBuscarLibroLayout = new javax.swing.GroupLayout(pnlSubPanelBuscarLibro);
-        pnlSubPanelBuscarLibro.setLayout(pnlSubPanelBuscarLibroLayout);
-        pnlSubPanelBuscarLibroLayout.setHorizontalGroup(
-            pnlSubPanelBuscarLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSubPanelBuscarLibroLayout.createSequentialGroup()
-                .addGroup(pnlSubPanelBuscarLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlSubPanelBuscarLibroLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(pnlSubPanelBuscarLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(pnlSubPanelBuscarLibroLayout.createSequentialGroup()
-                                .addComponent(lblDatosSeleccionados3, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70)
-                                .addComponent(lblCantidadDelLibro)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCantidadDelLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblDatosSeleccionados1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblDatosSeleccionados2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(pnlSubPanelBuscarLibroLayout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(btnAceptarBuscarLibro)
-                        .addGap(57, 57, 57)
-                        .addComponent(btnCancelarBuscarLibro)))
-                .addContainerGap(44, Short.MAX_VALUE))
-        );
-        pnlSubPanelBuscarLibroLayout.setVerticalGroup(
-            pnlSubPanelBuscarLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSubPanelBuscarLibroLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblDatosSeleccionados1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblDatosSeleccionados2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlSubPanelBuscarLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblDatosSeleccionados3)
-                    .addGroup(pnlSubPanelBuscarLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtCantidadDelLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblCantidadDelLibro)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlSubPanelBuscarLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptarBuscarLibro)
-                    .addComponent(btnCancelarBuscarLibro))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout pnlBuscarLibroLayout = new javax.swing.GroupLayout(pnlBuscarLibro);
-        pnlBuscarLibro.setLayout(pnlBuscarLibroLayout);
-        pnlBuscarLibroLayout.setHorizontalGroup(
-            pnlBuscarLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBuscarLibroLayout.createSequentialGroup()
-                .addGroup(pnlBuscarLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlBuscarLibroLayout.createSequentialGroup()
-                        .addGap(294, 294, 294)
-                        .addComponent(lblTituloBuscarLibro))
-                    .addGroup(pnlBuscarLibroLayout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(lblNombreDelLibro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombreDelLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBuscarNombreDelLibro))
-                    .addGroup(pnlBuscarLibroLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(pnlBuscarLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pnlSubPanelBuscarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-        pnlBuscarLibroLayout.setVerticalGroup(
-            pnlBuscarLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBuscarLibroLayout.createSequentialGroup()
-                .addComponent(lblTituloBuscarLibro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlBuscarLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombreDelLibro)
-                    .addComponent(txtNombreDelLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarNombreDelLibro))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlSubPanelBuscarLibro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        pnlLibrosVenta.add(pnlBuscarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 43, -1, -1));
+        pnlLibrosVenta.add(btnBuscarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
         tblLibrosVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -760,15 +497,15 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tblLibrosVenta);
 
-        pnlLibrosVenta.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 363, 661, 114));
+        pnlLibrosVenta.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 70, 730, 114));
 
         lblTextoPreciofinal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTextoPreciofinal.setText("Precio final     $");
-        pnlLibrosVenta.add(lblTextoPreciofinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 489, -1, -1));
+        pnlLibrosVenta.add(lblTextoPreciofinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, -1, -1));
 
         lblPrecioFinal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblPrecioFinal.setText("0,00");
-        pnlLibrosVenta.add(lblPrecioFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(606, 489, 123, -1));
+        pnlLibrosVenta.add(lblPrecioFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, 123, -1));
 
         btnCompletarVenta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnCompletarVenta.setText("Completar Venta");
@@ -777,9 +514,10 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
                 btnCompletarVentaActionPerformed(evt);
             }
         });
-        pnlLibrosVenta.add(btnCompletarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 529, -1, -1));
+        pnlLibrosVenta.add(btnCompletarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         lblBotonBuscarLibro.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblBotonBuscarLibro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBotonBuscarLibro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Iconos_30px/book-lupa.png"))); // NOI18N
         lblBotonBuscarLibro.setText("Buscar Libro");
         lblBotonBuscarLibro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -787,31 +525,59 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
                 lblBotonBuscarLibroMouseClicked(evt);
             }
         });
-        pnlLibrosVenta.add(lblBotonBuscarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 190, 30));
+        pnlLibrosVenta.add(lblBotonBuscarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 190, 40));
 
-        pnlCont.add(pnlLibrosVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 810, -1));
+        javax.swing.GroupLayout pnlContLayout = new javax.swing.GroupLayout(pnlCont);
+        pnlCont.setLayout(pnlContLayout);
+        pnlContLayout.setHorizontalGroup(
+            pnlContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlContLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(pnlContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(pnlCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+                    .addComponent(pnlDatosEncabezado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlLibrosVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
+        );
+        pnlContLayout.setVerticalGroup(
+            pnlContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlContLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(pnlDatosEncabezado, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(pnlCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnlLibrosVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
-        jScrollPane3.setViewportView(pnlCont);
+        pnlFondoPP.add(pnlCont, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(pnlFondoPP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1096, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(pnlFondoPP, javax.swing.GroupLayout.PREFERRED_SIZE, 1061, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarLibroActionPerformed
-        //libSeleccionado.setIdlibro(0);        
-
-        pnlBuscarLibro.setVisible(true);
-        txtNombreDelLibro.requestFocus();
+//        libSeleccionado.setIdlibro(0);        
+//
+//        pnlBuscarLibro.setVisible(true);
+//        txtNombreDelLibro.requestFocus();
     }//GEN-LAST:event_btnBuscarLibroActionPerformed
     
     private boolean camposLlenos(){//Validar entradas
@@ -896,123 +662,6 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnCompletarVentaActionPerformed
 
-    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
-        if(campoDNILleno()){
-            ClienteDAO cliDAO = new ClienteDAO();
-            cliUltBusc = cliDAO.GetClienteByDocumento(Long.parseLong(txtDocumento.getText()));
-            if(cliUltBusc.getIdcliente() > 0){
-                pnlSubPanelBuscarCliente.setVisible(true);
-                lblResultadoBuscarCliente.setText(cliUltBusc.getRazonsocial());
-                btnAceptarBuscarCliente.setEnabled(true);
-            }else{
-                lblResultadoBuscarCliente.setText("No se encontraron clientes con ese documento.");
-            }
-        }
-    }//GEN-LAST:event_btnBuscarClienteActionPerformed
-
-    private void btnCancelarBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarBuscarClienteActionPerformed
-        btnAceptarBuscarCliente.setEnabled(false);
-        pnlBuscarCliente.setVisible(false);
-    }//GEN-LAST:event_btnCancelarBuscarClienteActionPerformed
-
-    private void btnAceptarBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarBuscarClienteActionPerformed
-        c = cliUltBusc;
-        CargarClienteEnVenta(c);
-        pnlBuscarCliente.setVisible(false);
-    }//GEN-LAST:event_btnAceptarBuscarClienteActionPerformed
-
-    private void btnBuscarNombreDelLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarNombreDelLibroActionPerformed
-        if(campoNombreLibroLleno()){
-            LibroDAO libDAO = new LibroDAO();
-            String cad = (String)(txtNombreDelLibro.getText());
-            //System.out.println(cad);
-            LinkedList<Libro> librosRes = libDAO.GetLibrosByTitulo(cad);
-            //LinkedList<Libro> librosRes = libDAO.GetLibrosByTitulo(txtNombreLibro.getText());
-            //LinkedList<Libro> librosRes = libDAO.GetLibrosByTitulo();
-            //LinkedList<Libro> librosRes = libDAO.GetAllLibros();
-            
-            DefaultTableModel modelo = new DefaultTableModel();
-            modelo.addColumn("ID del Libro");  // Acá definimos las Columnas del Modelo
-            modelo.addColumn("ISBN");
-            modelo.addColumn("Nombre del Libro");
-            modelo.addColumn("Autor");
-            modelo.addColumn("Páginas");
-            modelo.addColumn("Editorial");
-            modelo.addColumn("Fecha de Public");
-            modelo.addColumn("Precio");
-            modelo.addColumn("ID Tema");
-            modelo.addColumn("Género");
-            // Acá cargamos las FILAS del Modelo
-            Object[] datos = new Object[10];// 
-
-            for (Libro book : librosRes) {
-                //System.out.println(book.getIdlibro());
-                datos[0] = book.getIdlibro();
-                datos[1] = book.getIsbn();
-                datos[2] = book.getTitulo();
-                datos[3] = book.getAutor();
-                datos[4] = book.getCantpaginas();
-                datos[5] = book.getEditorial();
-                datos[6] = book.getFechapublicacion();
-                datos[7] = book.getPrecio();
-                datos[8] = book.getTema().getIdtema();
-                datos[9] = book.getTema().getDescripcion();
-                modelo.addRow(datos);
-            }
-            tblResultLibros.setModel(modelo);
-            tblResultLibros.getColumnModel().getColumn(0).setMaxWidth(0);
-            tblResultLibros.getColumnModel().getColumn(0).setMinWidth(0);
-            tblResultLibros.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
-            tblResultLibros.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
-
-            tblResultLibros.getColumnModel().getColumn(4).setMaxWidth(0);
-            tblResultLibros.getColumnModel().getColumn(4).setMinWidth(0);
-            tblResultLibros.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(0);
-            tblResultLibros.getTableHeader().getColumnModel().getColumn(4).setMinWidth(0);
-
-            tblResultLibros.getColumnModel().getColumn(6).setMaxWidth(0);
-            tblResultLibros.getColumnModel().getColumn(6).setMinWidth(0);
-            tblResultLibros.getTableHeader().getColumnModel().getColumn(6).setMaxWidth(0);
-            tblResultLibros.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
-
-            tblResultLibros.getColumnModel().getColumn(8).setMaxWidth(0);
-            tblResultLibros.getColumnModel().getColumn(8).setMinWidth(0);
-            tblResultLibros.getTableHeader().getColumnModel().getColumn(8).setMaxWidth(0);
-            tblResultLibros.getTableHeader().getColumnModel().getColumn(8).setMinWidth(0);
-            
-            //btnAceptarBuscarLibro.setEnabled(true);
-        }else{
-            JOptionPane.showMessageDialog(null, "Debe escribir parte del nombre del Libro.");
-        }
-    }//GEN-LAST:event_btnBuscarNombreDelLibroActionPerformed
-
-    private void tblResultLibrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblResultLibrosMouseClicked
-        pnlSubPanelBuscarLibro.setVisible(true);
-        int idLibro = (int) (tblResultLibros.getValueAt(tblResultLibros.getSelectedRow(), 0));
-        String ISBNLibro = (String) tblResultLibros.getValueAt(tblResultLibros.getSelectedRow(), 1);
-        String tituloLibro = (String) (tblResultLibros.getValueAt(tblResultLibros.getSelectedRow(), 2));
-        String autorLibro = (String) tblResultLibros.getValueAt(tblResultLibros.getSelectedRow(), 3);
-        int cantPag = (int) (tblResultLibros.getValueAt(tblResultLibros.getSelectedRow(), 4));
-        String editorialLibro = (String) tblResultLibros.getValueAt(tblResultLibros.getSelectedRow(), 5);
-        Date fechaPub = (Date)(tblResultLibros.getValueAt(tblResultLibros.getSelectedRow(), 6));
-        double precioLibro = (double) tblResultLibros.getValueAt(tblResultLibros.getSelectedRow(), 7);
-        int idTema = (int)(tblResultLibros.getValueAt(tblResultLibros.getSelectedRow(), 8));
-        String descripTema = (String)(tblResultLibros.getValueAt(tblResultLibros.getSelectedRow(), 9));
-        Tema t = new Tema(idTema, descripTema);
-        libSeleccionado = new Libro(idLibro, ISBNLibro, tituloLibro, autorLibro, cantPag, editorialLibro, fechaPub, precioLibro, t);
-//String precioLibro = "corregir";
-//        System.out.println("Al hacer Click");
-//        for(VentaDetalle venD : listaLibrosDeVenta){
-//                System.out.println(venD.getPreciovta());
-//            }
-        lblDatosSeleccionados1.setText("Libro: " + tituloLibro + " ** ISBN " + ISBNLibro);
-        lblDatosSeleccionados2.setText("Escritor: " + autorLibro + " ** Editorial: " + editorialLibro);
-        lblDatosSeleccionados3.setText("Precio: $" + precioLibro);
-        txtCantidadDelLibro.setEnabled(true);
-        txtCantidadDelLibro.setText("1");
-        btnAceptarBuscarLibro.setEnabled(true);
-    }//GEN-LAST:event_tblResultLibrosMouseClicked
-
     private boolean yaEstaElLibroEnLaLista(int idLibro){
         boolean existe = false;
         for (VentaDetalle ventaD : listaLibrosDeVenta) {
@@ -1061,48 +710,6 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         }
     }
     
-    private void btnAceptarBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarBuscarLibroActionPerformed
-        if(libSeleccionado.getIdlibro() > 0){
-            if(!yaEstaElLibroEnLaLista(libSeleccionado.getIdlibro())){
-                int cantLib = 0;
-                try {
-                    cantLib = Integer.parseInt(txtCantidadDelLibro.getText());
-                    if(cantLib < 1){
-                        JOptionPane.showMessageDialog(null, "La cantidad de unidades del libro, debe ser mayor a 0");
-                    }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Ocurrió un error obteniendo la cantidad de unidades pedidas del libro. (Err:"+e+")");
-                    txtCantidadDelLibro.requestFocus();
-                }
-                vd = new VentaDetalle();
-                vd.setLibro(libSeleccionado);//System.out.println(vd.getLibro().getIdlibro());
-                vd.setCantidad(cantLib);
-                vd.setPreciovta(libSeleccionado.getPrecio());
-    //            System.out.println("Antes");
-    //            for(VentaDetalle venD : listaLibrosDeVenta){
-    //                System.out.println(venD.getPreciovta());
-    //            }
-    //System.out.println(vd.getLibro().getIdlibro());
-                listaLibrosDeVenta.add(vd);//Antes revisar que no esté el libro ya en la lista
-    //            System.out.println("despues");
-    //            for(VentaDetalle venD : listaLibrosDeVenta){
-    //                System.out.println(venD.getLibro().getIdlibro());
-    //            }
-
-
-                CargarLibrosDeVentaGrid();
-                InicializarPanelBuscarLibro();
-                lblPrecioFinal.setText(Double.toString(CalcularTotalVenta()));
-            }else{
-                JOptionPane.showMessageDialog(null, "Ese libro ya fué agregado antes, si quiere cambiar la cantidad utilice el botón de la tabla.");
-            }
-        }
-    }//GEN-LAST:event_btnAceptarBuscarLibroActionPerformed
-
-    private void btnCancelarBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarBuscarLibroActionPerformed
-        InicializarPanelBuscarLibro();
-    }//GEN-LAST:event_btnCancelarBuscarLibroActionPerformed
-
     private void tblLibrosVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLibrosVentaMouseClicked
         int colum = tblLibrosVenta.getColumnModel().getColumnIndexAtX(evt.getX());
         int fila = evt.getY()/tblLibrosVenta.getRowHeight();
@@ -1184,21 +791,21 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_lblBotonBuscarLibroMouseClicked
     
-    private boolean campoDNILleno(){
-        boolean lleno = true;
-        if(txtDocumento.getText().isEmpty()){
-            lleno = false;
-        }
-        return lleno;
-    }
+//    private boolean campoDNILleno(){
+//        boolean lleno = true;
+//        if(txtDocumento.getText().isEmpty()){
+//            lleno = false;
+//        }
+//        return lleno;
+//    }
     
-    private boolean campoNombreLibroLleno(){
-        boolean lleno = true;
-        if(txtNombreDelLibro.getText().isEmpty()){
-            lleno = false;
-        }
-        return lleno;
-    }
+//    private boolean campoNombreLibroLleno(){
+//        boolean lleno = true;
+//        if(txtNombreDelLibro.getText().isEmpty()){
+//            lleno = false;
+//        }
+//        return lleno;
+//    }
     
     private double CalcularTotalVenta(){
         double montoVenta = 0;
@@ -1223,53 +830,32 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptarBuscarCliente;
-    private javax.swing.JButton btnAceptarBuscarLibro;
-    private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnBuscarLibro;
-    private javax.swing.JButton btnBuscarNombreDelLibro;
-    private javax.swing.JButton btnCancelarBuscarCliente;
-    private javax.swing.JButton btnCancelarBuscarLibro;
     private javax.swing.JButton btnCompletarVenta;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblBotonBuscarLibro;
     private javax.swing.JLabel lblBotonCargarCliente;
-    private javax.swing.JLabel lblCantidadDelLibro;
-    private javax.swing.JLabel lblDatosSeleccionados1;
-    private javax.swing.JLabel lblDatosSeleccionados2;
-    private javax.swing.JLabel lblDatosSeleccionados3;
-    private javax.swing.JLabel lblDocumento;
     private javax.swing.JLabel lblEmailCliente;
     private javax.swing.JLabel lblFechaActual;
     private javax.swing.JLabel lblIDCliente;
-    private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblLogoEncabezado;
     private javax.swing.JLabel lblNombreCliente;
-    private javax.swing.JLabel lblNombreDelLibro;
     private javax.swing.JLabel lblNroDocCliente;
     private javax.swing.JLabel lblNumComprobante;
     private javax.swing.JLabel lblPrecioFinal;
-    private javax.swing.JLabel lblResultadoBuscarCliente;
     private javax.swing.JLabel lblTextoPreciofinal;
     private javax.swing.JLabel lblTipoDocumentoCliente;
-    private javax.swing.JLabel lblTituloBuscarCliente;
-    private javax.swing.JLabel lblTituloBuscarLibro;
     private javax.swing.JLabel lblTituloSeccionCliente;
     private javax.swing.JLabel lblTituloVentaPP;
-    private javax.swing.JPanel pnlBuscarCliente;
-    private javax.swing.JPanel pnlBuscarLibro;
+    private javax.swing.JLabel lblXCerrar;
     private javax.swing.JPanel pnlCliente;
     private javax.swing.JPanel pnlCont;
+    private javax.swing.JPanel pnlDatosEncabezado;
     private javax.swing.JPanel pnlEncabezado;
+    private javax.swing.JPanel pnlFondoPP;
     private javax.swing.JPanel pnlLibrosVenta;
-    private javax.swing.JPanel pnlSubPanelBuscarCliente;
-    private javax.swing.JPanel pnlSubPanelBuscarLibro;
     private javax.swing.JTable tblLibrosVenta;
-    private javax.swing.JTable tblResultLibros;
-    private javax.swing.JTextField txtCantidadDelLibro;
-    private javax.swing.JTextField txtDocumento;
-    private javax.swing.JTextField txtNombreDelLibro;
     private javax.swing.JTextField txtNumComprobante;
     // End of variables declaration//GEN-END:variables
 

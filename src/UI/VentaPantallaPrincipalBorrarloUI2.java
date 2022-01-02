@@ -7,11 +7,12 @@ import DAO.VentaDetalleDAO;
 import Identidades.Cliente;
 import Identidades.ImagenFondo;
 import Identidades.Libro;
-import Identidades.Render;
 import Identidades.Tema;
 import Identidades.Venta;
 import Identidades.VentaDetalle;
+import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.text.DateFormat;
@@ -20,15 +21,12 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import javax.swing.DefaultCellEditor;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import jdk.nashorn.internal.objects.NativeString;
 
-public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
+public class VentaPantallaPrincipalBorrarloUI2 extends javax.swing.JDialog {
     DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     DateFormat fechaParaBDD = new SimpleDateFormat("yyyy-MM-dd");
     Cliente c = new Cliente();
@@ -38,10 +36,12 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
     VentaDetalle vd = new VentaDetalle();
     LinkedList<VentaDetalle> listaLibrosDeVenta = new LinkedList<>();
     //double montoVenta = 0;
-    int nuevaCant = 1;
-//    ImagenFondo p = new ImagenFondo();
+    //ImagenFondo p = new ImagenFondo();
     
-    public VentaPantallaPrincipalBorrarloUI(java.awt.Frame parent, boolean modal) {
+    
+    ColoresDePantallas colores = new ColoresDePantallas();
+    
+    public VentaPantallaPrincipalBorrarloUI2(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         lblFechaActual.setText("Fecha: "+fecha.format(LocalDateTime.now()));
@@ -49,34 +49,16 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
         GrillaBase();
         inicializarPantalla();
         
-//        Image miIcono = Toolkit.getDefaultToolkit().getImage("/Images/LogoSolo_FondoSombra_icono.ico");
-//        parent.setIconImage(miIcono);
-        setTitle("Ventas");
-        setIconImage(getIconImage());
-//        Container contenedor = getContentPane();
-//        p.setRuta("/Images/librosAbiertos.jpg");
-    }
-    
-    public VentaPantallaPrincipalBorrarloUI(java.awt.Frame parent, boolean modal, Cliente cli) {
-        super(parent, modal);
-        initComponents();
-        lblFechaActual.setText("Fecha: "+fecha.format(LocalDateTime.now()));
-        //CargarLibrosDeVentaGrid();
-        GrillaBase();
-        inicializarPantalla();
+        Container contenedor = getContentPane();
+        //p.setRuta("/Images/librosAbiertos.jpg");
+        Image miIcono = Toolkit.getDefaultToolkit().getImage("/Images/LogoSolo_FondoSombra_icono.ico");
+        parent.setIconImage(miIcono);
+        setTitle("Usuarios");
         
-//        Image miIcono = Toolkit.getDefaultToolkit().getImage("/Images/LogoSolo_FondoSombra_icono.ico");
-//        parent.setIconImage(miIcono);
-        setTitle("Ventas");
-        setIconImage(getIconImage());
+        IniciarPantalla();
     }
     
-    public Image getIconImage(){
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Images/LogoSoloCuadrado_64x64.png"));
-        return retValue;
-    }
-    
-    public void inicializarPantalla(){
+    private void IniciarPantalla() {
         InicializarPanelClienteEnVenta();
         pnlBuscarCliente.setVisible(false);
         txtDocumento.setText("");
@@ -90,18 +72,63 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
         GrillaBase();
         
         lblPrecioFinal.setText("0,00");
-        
-        //ImagenFondo imgLbl = new ImagenFondo();
-        //imgLbl.pintarImagenEnLabel(lblLogo, "/Images/LogoTextoAbajo_FondoTransparente.png");
-        
+                       
         //txtNumComprobante.setText("00001 - " + NativeString.substr("000000" + String.valueOf(ventasdao.getMaxNumCbte() + 1), 1, 8));
         VentaDAO vDAO = new VentaDAO();
         txtNumComprobante.setText(vDAO.CadenaComprobante(vDAO.UltimoNroComprobanteMasUno()));
+        
+        //Colores
+        colores.ColorDeEncabezadoDePantalla(pnlEncabezado);
+        colores.ColorDeXParaCerrar(lblXCerrar);
+        colores.ColorDeCuerpoDeLaPantalla(pnlCont);
+        colores.ColorDeLabelDeLaPantalla(lblMostrarUserTitulo);
+        colores.ColorDeLabelDeLaPantalla(lblMostrarUserNombre);
+        colores.ColorDeLabelDeLaPantalla(lblMostrarUserContrasenia);
+        //colores.ColorDeLabelDeLaPantalla(lblMostrarUserTitulo);
+        colores.ColorDeBotonLabelPantalla(lblBotonAgregar);
+        colores.ColorDeBotonLabelPantalla(lblBotonModificar);
+        colores.ColorDeBotonLabelPantalla(lblBotonBorrar);
+        colores.ColorDeBotonLabelPantalla(lblBotonGuardar);
+        colores.ColorDeBotonLabelPantalla(lblBotonSalir);
+    }
+    
+    private void inicializarCajas() {
+        TextPrompt txtCrearUsrNombre = new TextPrompt("Ingrese el nombre", txtMostrarUserNombre);
+        txtCrearUsrNombre.setForeground(Color.GRAY);
+        txtCrearUsrNombre.changeAlpha(0.5f);
+        txtCrearUsrNombre.changeStyle(Font.BOLD + Font.ROMAN_BASELINE + Font.ITALIC);
+        TextPrompt txtCrearUsrcontrasenia = new TextPrompt("Ingrese la contraseña", txtMostrarUserContrasenia);
+        txtCrearUsrcontrasenia.setForeground(Color.GRAY);
+        txtCrearUsrcontrasenia.changeAlpha(0.5f);
+        txtCrearUsrcontrasenia.changeStyle(Font.BOLD + Font.ROMAN_BASELINE + Font.ITALIC);
+    }
+    
+    public VentaPantallaPrincipalBorrarloUI2(java.awt.Frame parent, boolean modal, Cliente cli) {
+        super(parent, modal);
+        initComponents();
+        lblFechaActual.setText("Fecha: "+fecha.format(LocalDateTime.now()));
+        //CargarLibrosDeVentaGrid();
+        GrillaBase();
+        inicializarPantalla();
+    }
+    
+    public void inicializarPantalla(){
+        InicializarPanelClienteEnVenta();
+        pnlBuscarCliente.setVisible(false);
+        txtDocumento.setText("");
+        btnAceptarBuscarCliente.setEnabled(false);
+        pnlSubPanelBuscarCliente.setVisible(false);
+        
+        listaLibrosDeVenta.clear();//elimino los elementos de la lista, la dejo vacia
+        InicializarPanelBuscarLibro();
+        /*** inicializar grilla venta vacias ***/
+        GrillaBase();
+        
+        lblPrecioFinal.setText("0,00");
     }
     
     public void InicializarPanelClienteEnVenta(){
         lblIDCliente.setText("ID Cliente");
-        lblIDCliente.setVisible(false);
         lblNombreCliente.setText("Nombre: ");
         lblEmailCliente.setText("E-mail: ");
         lblTipoDocumentoCliente.setText("Tipo de documento: ");
@@ -169,18 +196,7 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
     }
         
     private void CargarLibrosDeVentaGrid() {
-        tblLibrosVenta.setDefaultRenderer(Object.class, new Render());
-        JButton btnQuitarLibro = new JButton("Quitar");
-        btnQuitarLibro.setName("btnQuitarLibro");
-        
-        JButton btnModifLibro = new JButton("Modificar");
-        btnModifLibro.setName("btnModifLibro");
-        
-        DefaultTableModel modelo = new DefaultTableModel(){
-            public boolean isCellEditable(int fila, int columna){
-                return false;
-            }
-        };
+        DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID del Libro");  // Acá definimos las Columnas del Modelo
         modelo.addColumn("ISBN");
         modelo.addColumn("Nombre del Libro");
@@ -192,16 +208,10 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
         modelo.addColumn("Precio unitario");
         modelo.addColumn("ID Tema");
         modelo.addColumn("Género");
-        modelo.addColumn("");
-        modelo.addColumn("");
         // Acá cargamos las FILAS del Modelo
-        Object[] datos = new Object[13];// 
+        Object[] datos = new Object[11];// 
         
         for (VentaDetalle book : listaLibrosDeVenta) {
-//            JTextField txtCeldaCantEjemplares = new JTextField();
-//            txtCeldaCantEjemplares.setText(Integer.toString(book.getCantidad()));
-//            datos[7].setCellEditor(new DefaultCellEditor(txtCeldaCantEjemplares));
-            
             datos[0] = book.getLibro().getIdlibro();
             datos[1] = book.getLibro().getIsbn();
             datos[2] = book.getLibro().getTitulo();
@@ -213,37 +223,10 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
             datos[8] = book.getLibro().getPrecio();
             datos[9] = book.getLibro().getTema().getIdtema();
             datos[10] = book.getLibro().getTema().getDescripcion();
-            //datos[11] = new JButton("Quitar");
-            datos[11] = btnModifLibro;
-            datos[12] = btnQuitarLibro;
             modelo.addRow(datos);
-            
-//            JTextField txtCeldaCantEjemplares = new JTextField();
-//            txtCeldaCantEjemplares.setEditable(true);
-//            txtCeldaCantEjemplares.setText(Integer.toString(book.getCantidad()));
-//            (tblLibrosVenta.getColumnModel().getColumn(2)).setCellEditor(new DefaultCellEditor(txtCeldaCantEjemplares));
         }
         
         tblLibrosVenta.setModel(modelo);
-        
-        //JButton btnBorrarLibro = new JButton();
-        //textField.setEditable(true);
-        //txtCeldaCantEjemplares.setText(Integer.toString(book.getCantidad()));
-        //(tblLibrosVenta.getColumnModel().getColumn(2)).setCellEditor(new DefaultCellEditor(btnBorrarLibro));
-        
-        
-//        JComboBox comboBox = new JComboBox();
-//        for(int x = 0; x < 15; x++){
-//            comboBox.addItem(x+1);
-//        }
-//        comboBox.addItem("Lima");
-//        comboBox.addItem("Arequipa");
-//        comboBox.addItem("Huaunuco");
-//        comboBox.addItem("Iquitos");
-//        comboBox.addItem("Madre de Dios");
-//        comboBox.addItem("Trujillo");
-        
-        
 //        tblLibrosVenta.getColumnModel().getColumn(0).setMaxWidth(0);
 //        tblLibrosVenta.getColumnModel().getColumn(0).setMinWidth(0);
 //        tblLibrosVenta.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
@@ -303,9 +286,9 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
         pnlEncabezado = new javax.swing.JPanel();
         lblLogoEncabezado = new javax.swing.JLabel();
         lblXCerrar = new javax.swing.JLabel();
+        pnlCont = new ImagenFondo();
+        this.setContentPane(p);
         lblTituloVentaPP = new javax.swing.JLabel();
-        pnlCont = new javax.swing.JPanel();
-        pnlDatosEncabezado = new javax.swing.JPanel();
         lblNumComprobante = new javax.swing.JLabel();
         txtNumComprobante = new javax.swing.JTextField();
         lblFechaActual = new javax.swing.JLabel();
@@ -317,7 +300,6 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
         lblTipoDocumentoCliente = new javax.swing.JLabel();
         lblNroDocCliente = new javax.swing.JLabel();
         btnCambiarCliente = new javax.swing.JButton();
-        lblBotonCargarCliente = new javax.swing.JLabel();
         pnlBuscarCliente = new javax.swing.JPanel();
         lblTituloBuscarCliente = new javax.swing.JLabel();
         lblDocumento = new javax.swing.JLabel();
@@ -352,18 +334,13 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAutoRequestFocus(false);
-        setBackground(new java.awt.Color(153, 153, 255));
-        setMinimumSize(new java.awt.Dimension(850, 840));
-        setPreferredSize(new java.awt.Dimension(850, 840));
 
-        pnlFondoPP.setMaximumSize(new java.awt.Dimension(850, 840));
-        pnlFondoPP.setMinimumSize(new java.awt.Dimension(850, 840));
-        pnlFondoPP.setPreferredSize(new java.awt.Dimension(850, 840));
+        pnlFondoPP.setMinimumSize(new java.awt.Dimension(850, 970));
         pnlFondoPP.setLayout(new java.awt.BorderLayout());
 
-        pnlEncabezado.setMaximumSize(new java.awt.Dimension(850, 40));
-        pnlEncabezado.setMinimumSize(new java.awt.Dimension(850, 40));
-        pnlEncabezado.setPreferredSize(new java.awt.Dimension(850, 40));
+        pnlEncabezado.setMaximumSize(new java.awt.Dimension(730, 40));
+        pnlEncabezado.setMinimumSize(new java.awt.Dimension(730, 40));
+        pnlEncabezado.setPreferredSize(new java.awt.Dimension(730, 40));
 
         lblLogoEncabezado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/FenixDoradoTextoDerechaBlanco35Alto.png"))); // NOI18N
 
@@ -372,107 +349,61 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
         lblXCerrar.setForeground(new java.awt.Color(255, 255, 255));
         lblXCerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblXCerrar.setText("X");
+        lblXCerrar.setMaximumSize(new java.awt.Dimension(20, 30));
+        lblXCerrar.setMinimumSize(new java.awt.Dimension(20, 30));
         lblXCerrar.setOpaque(true);
-
-        lblTituloVentaPP.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblTituloVentaPP.setText("Venta");
 
         javax.swing.GroupLayout pnlEncabezadoLayout = new javax.swing.GroupLayout(pnlEncabezado);
         pnlEncabezado.setLayout(pnlEncabezadoLayout);
         pnlEncabezadoLayout.setHorizontalGroup(
             pnlEncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEncabezadoLayout.createSequentialGroup()
-                .addComponent(lblLogoEncabezado, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(lblTituloVentaPP)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 356, Short.MAX_VALUE)
+                .addComponent(lblLogoEncabezado, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 457, Short.MAX_VALUE)
                 .addComponent(lblXCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlEncabezadoLayout.setVerticalGroup(
             pnlEncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblLogoEncabezado, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
             .addGroup(pnlEncabezadoLayout.createSequentialGroup()
-                .addGroup(pnlEncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblXCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTituloVentaPP, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblLogoEncabezado, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(lblXCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        lblLogoEncabezado.getAccessibleContext().setAccessibleName("");
 
         pnlFondoPP.add(pnlEncabezado, java.awt.BorderLayout.NORTH);
 
-        pnlCont.setBackground(new java.awt.Color(153, 153, 255));
-        pnlCont.setAutoscrolls(true);
-        pnlCont.setMaximumSize(new java.awt.Dimension(850, 400));
-        pnlCont.setMinimumSize(new java.awt.Dimension(850, 400));
-        pnlCont.setPreferredSize(new java.awt.Dimension(850, 400));
+        pnlCont.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlDatosEncabezado.setBackground(new java.awt.Color(145, 145, 255));
+        lblTituloVentaPP.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        lblTituloVentaPP.setText("Venta");
+        pnlCont.add(lblTituloVentaPP, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 12, -1, -1));
 
-        lblNumComprobante.setBackground(new java.awt.Color(204, 204, 255));
-        lblNumComprobante.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblNumComprobante.setText("n° de comprobante");
-        lblNumComprobante.setOpaque(true);
+        pnlCont.add(lblNumComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 47, -1, -1));
+        pnlCont.add(txtNumComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(587, 45, 242, -1));
 
-        txtNumComprobante.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        lblFechaActual.setBackground(new java.awt.Color(204, 204, 255));
-        lblFechaActual.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblFechaActual.setText("Fecha");
-        lblFechaActual.setOpaque(true);
-
-        javax.swing.GroupLayout pnlDatosEncabezadoLayout = new javax.swing.GroupLayout(pnlDatosEncabezado);
-        pnlDatosEncabezado.setLayout(pnlDatosEncabezadoLayout);
-        pnlDatosEncabezadoLayout.setHorizontalGroup(
-            pnlDatosEncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosEncabezadoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlDatosEncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosEncabezadoLayout.createSequentialGroup()
-                        .addComponent(lblNumComprobante)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNumComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosEncabezadoLayout.createSequentialGroup()
-                        .addComponent(lblFechaActual)
-                        .addGap(157, 157, 157)))
-                .addGap(20, 20, 20))
-        );
-        pnlDatosEncabezadoLayout.setVerticalGroup(
-            pnlDatosEncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosEncabezadoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblFechaActual)
-                .addGap(18, 18, 18)
-                .addGroup(pnlDatosEncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNumComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNumComprobante))
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
+        pnlCont.add(lblFechaActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 12, -1, -1));
 
         pnlCliente.setBackground(new java.awt.Color(204, 204, 255));
-        pnlCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTituloSeccionCliente.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblTituloSeccionCliente.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lblTituloSeccionCliente.setText("Cliente");
-        pnlCliente.add(lblTituloSeccionCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         lblIDCliente.setText("ID Cliente");
-        pnlCliente.add(lblIDCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 17, -1, -1));
 
         lblNombreCliente.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblNombreCliente.setText("Nombre: ");
-        pnlCliente.add(lblNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 49, 375, -1));
 
-        lblEmailCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblEmailCliente.setText("E-mail: ");
-        pnlCliente.add(lblEmailCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(423, 49, 233, -1));
 
         lblTipoDocumentoCliente.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblTipoDocumentoCliente.setText("TipoDoc");
-        pnlCliente.add(lblTipoDocumentoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 78, 254, -1));
 
         lblNroDocCliente.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblNroDocCliente.setText("n° de documento");
-        pnlCliente.add(lblNroDocCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 78, 203, -1));
 
         btnCambiarCliente.setText("Cambiar el Cliente");
         btnCambiarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -480,19 +411,56 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
                 btnCambiarClienteActionPerformed(evt);
             }
         });
-        pnlCliente.add(btnCambiarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, -1, -1));
 
-        lblBotonCargarCliente.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lblBotonCargarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Iconos_40px/modificar-usuario.png"))); // NOI18N
-        lblBotonCargarCliente.setText("Cargar Cliente");
-        lblBotonCargarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblBotonCargarClienteMouseClicked(evt);
-            }
-        });
-        pnlCliente.add(lblBotonCargarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(591, 10, 200, 50));
+        javax.swing.GroupLayout pnlClienteLayout = new javax.swing.GroupLayout(pnlCliente);
+        pnlCliente.setLayout(pnlClienteLayout);
+        pnlClienteLayout.setHorizontalGroup(
+            pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlClienteLayout.createSequentialGroup()
+                .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlClienteLayout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlClienteLayout.createSequentialGroup()
+                                .addComponent(lblNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlClienteLayout.createSequentialGroup()
+                                        .addComponent(lblIDCliente)
+                                        .addGap(127, 127, 127)
+                                        .addComponent(btnCambiarCliente))
+                                    .addGroup(pnlClienteLayout.createSequentialGroup()
+                                        .addGap(32, 32, 32)
+                                        .addComponent(lblEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(pnlClienteLayout.createSequentialGroup()
+                                .addComponent(lblTipoDocumentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblNroDocCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlClienteLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblTituloSeccionCliente)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlClienteLayout.setVerticalGroup(
+            pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlClienteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTituloSeccionCliente)
+                    .addComponent(lblIDCliente)
+                    .addComponent(btnCambiarCliente))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombreCliente)
+                    .addComponent(lblEmailCliente))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTipoDocumentoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblNroDocCliente))
+                .addContainerGap())
+        );
 
-        pnlBuscarCliente.setBackground(new java.awt.Color(204, 204, 255));
+        pnlCont.add(pnlCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 80, -1, -1));
 
         lblTituloBuscarCliente.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         lblTituloBuscarCliente.setText("Buscar Cliente por el n° de Documento.");
@@ -509,8 +477,6 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
                 btnBuscarClienteActionPerformed(evt);
             }
         });
-
-        pnlSubPanelBuscarCliente.setBackground(new java.awt.Color(255, 204, 153));
 
         lblResultadoBuscarCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
@@ -575,7 +541,7 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
                         .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
         pnlBuscarClienteLayout.setVerticalGroup(
             pnlBuscarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -591,7 +557,7 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
                 .addGap(0, 6, Short.MAX_VALUE))
         );
 
-        pnlLibrosVenta.setBackground(new java.awt.Color(204, 255, 255));
+        pnlCont.add(pnlBuscarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 205, -1, -1));
 
         btnBuscarLibro.setText("Buscar Libro");
         btnBuscarLibro.addActionListener(new java.awt.event.ActionListener() {
@@ -599,8 +565,6 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
                 btnBuscarLibroActionPerformed(evt);
             }
         });
-
-        pnlBuscarLibro.setBackground(new java.awt.Color(153, 204, 255));
 
         lblTituloBuscarLibro.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         lblTituloBuscarLibro.setText("Buscar Libro");
@@ -635,8 +599,6 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
             }
         });
         jScrollPane2.setViewportView(tblResultLibros);
-
-        pnlSubPanelBuscarLibro.setOpaque(false);
 
         lblDatosSeleccionados1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblDatosSeleccionados1.setText("jLabel1");
@@ -760,11 +722,6 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblLibrosVenta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblLibrosVentaMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tblLibrosVenta);
 
         lblTextoPreciofinal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -797,7 +754,7 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
                         .addGroup(pnlLibrosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlLibrosVentaLayout.createSequentialGroup()
-                                .addGap(254, 254, 254)
+                                .addGap(233, 233, 233)
                                 .addComponent(btnCompletarVenta)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLibrosVentaLayout.createSequentialGroup()
@@ -805,9 +762,9 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
                 .addComponent(btnBuscarLibro)
                 .addGap(59, 59, 59))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLibrosVentaLayout.createSequentialGroup()
-                .addGap(0, 44, Short.MAX_VALUE)
+                .addGap(0, 55, Short.MAX_VALUE)
                 .addComponent(pnlBuscarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         pnlLibrosVentaLayout.setVerticalGroup(
             pnlLibrosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -824,59 +781,26 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
                     .addComponent(lblPrecioFinal))
                 .addGap(18, 18, 18)
                 .addComponent(btnCompletarVenta)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout pnlContLayout = new javax.swing.GroupLayout(pnlCont);
-        pnlCont.setLayout(pnlContLayout);
-        pnlContLayout.setHorizontalGroup(
-            pnlContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlContLayout.createSequentialGroup()
-                .addGroup(pnlContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pnlContLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(pnlBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlContLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(pnlLibrosVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlContLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pnlDatosEncabezado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlContLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pnlCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        pnlContLayout.setVerticalGroup(
-            pnlContLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlContLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlDatosEncabezado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(pnlLibrosVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        pnlCont.add(pnlLibrosVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 379, -1, -1));
 
-        pnlFondoPP.add(pnlCont, java.awt.BorderLayout.CENTER);
+        pnlFondoPP.add(pnlCont, java.awt.BorderLayout.SOUTH);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(pnlFondoPP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlFondoPP, javax.swing.GroupLayout.PREFERRED_SIZE, 863, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(pnlFondoPP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlFondoPP, javax.swing.GroupLayout.PREFERRED_SIZE, 1099, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -945,43 +869,41 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
 //                montoTotal += (cant * preUnit);
 //            }
             
-            long numComp = vDAO.ObtenerNroComprobante(txtNumComprobante.getText());
-            if(numComp > 0){
-                Venta v = new Venta();
-                v.setNrocomprobante(numComp);
-                v.setCliente(c);
-                //la fecha queda automatica en el insert del SQL  NOW()
-                v.setMontototal(montoTotal);
-                if(vDAO.CrearVenta(v) > 0){
-                    //JOptionPane.showMessageDialog(null, "La venta se creó con exito");
-                    //int idV = vDAO.getIDVentaByNroComprobante(Long.parseLong(txtNumComprobante.getText()));
-                    //int idV = vDAO.getIDVentaByNroComprobante(986);
-                    //JOptionPane.showMessageDialog(null, idV);
-                    v.setIdventas(vDAO.getIDVentaByNroComprobante(numComp));
-                    VentaDetalleDAO vdDAO = new VentaDetalleDAO();
-                    boolean erroresDetalles = false;
-                    int contInserts = 0;
-                    //for(int k = 0; k < tblLibrosVenta.getRowCount(); k++){
-                    for (VentaDetalle venDet : listaLibrosDeVenta){
-                        //VentaDetalle vd = new VentaDetalle();
-                        venDet.setVenta(v);
-
-
-                        if((vdDAO.crearDetallesDeVenta(venDet)) > 0){
-                            contInserts++;
-                        }else{
-                            erroresDetalles = true;
-                        }
-                    }
-                    if(cantFilasTabla != contInserts){
-                        JOptionPane.showMessageDialog(null, "No se guardaron todos los items de la venta.");
-                    }
-                    if(!erroresDetalles){
-                        JOptionPane.showMessageDialog(null, "Los items de la venta fueron agregados con exito.");
-                        dispose();
+            Venta v = new Venta();
+            v.setNrocomprobante(Long.parseLong(txtNumComprobante.getText()));
+            v.setCliente(c);
+            //la fecha queda automatica en el insert del SQL  NOW()
+            v.setMontototal(montoTotal);
+            if(vDAO.CrearVenta(v) > 0){
+                //JOptionPane.showMessageDialog(null, "La venta se creó con exito");
+                //int idV = vDAO.getIDVentaByNroComprobante(Long.parseLong(txtNumComprobante.getText()));
+                //int idV = vDAO.getIDVentaByNroComprobante(986);
+                //JOptionPane.showMessageDialog(null, idV);
+                v.setIdventas(vDAO.getIDVentaByNroComprobante(Long.parseLong(txtNumComprobante.getText())));
+                VentaDetalleDAO vdDAO = new VentaDetalleDAO();
+                boolean erroresDetalles = false;
+                int contInserts = 0;
+                //for(int k = 0; k < tblLibrosVenta.getRowCount(); k++){
+                for (VentaDetalle venDet : listaLibrosDeVenta){
+                    //VentaDetalle vd = new VentaDetalle();
+                    venDet.setVenta(v);
+     
+                    
+                    if((vdDAO.crearDetallesDeVenta(venDet)) > 0){
+                        contInserts++;
+                    }else{
+                        erroresDetalles = true;
                     }
                 }
+                if(cantFilasTabla != contInserts){
+                    JOptionPane.showMessageDialog(null, "No se guardaron todos los items de la venta.");
+                }
+                if(!erroresDetalles){
+                    JOptionPane.showMessageDialog(null, "Los items de la venta fueron agregados con exito.");
+                    dispose();
+                }
             }
+            
         }else{
             JOptionPane.showMessageDialog(null, "Hay datos sin llenar.");
         }
@@ -1104,141 +1026,43 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
         btnAceptarBuscarLibro.setEnabled(true);
     }//GEN-LAST:event_tblResultLibrosMouseClicked
 
-    private boolean yaEstaElLibroEnLaLista(int idLibro){
-        boolean existe = false;
-        for (VentaDetalle ventaD : listaLibrosDeVenta) {
-            if(ventaD.getLibro().getIdlibro() == idLibro){
-                existe = true;
-                return existe;
-            }
-        }
-        return existe;
-    }
-    
-    private void quitarLibroDeLaLista(int idLibro){
-        //boolean todoOK = false;
-        if(yaEstaElLibroEnLaLista(idLibro)){
-            LinkedList<VentaDetalle> listaNueva = new LinkedList<>();
-        
-            for (VentaDetalle ventaD : listaLibrosDeVenta) {
-                if(ventaD.getLibro().getIdlibro() != idLibro){
-                    listaNueva.add(ventaD);
-                }
-            }
-            listaLibrosDeVenta.clear();
-            listaLibrosDeVenta = listaNueva;
-        }else{
-            JOptionPane.showMessageDialog(null, "El libro que quiere quitar no está en la lista.");
-        }
-    }
-    
-    private void modificarLibroDeLaLista(int idLibro, int nuevaCantidad){
-        //boolean todoOK = false;
-        if(yaEstaElLibroEnLaLista(idLibro)){
-            LinkedList<VentaDetalle> listaNueva = new LinkedList<>();
-        
-            for (VentaDetalle ventaD : listaLibrosDeVenta) {
-                if(ventaD.getLibro().getIdlibro() != idLibro){
-                    listaNueva.add(ventaD);
-                }else{
-                    ventaD.setCantidad(nuevaCantidad);
-                    listaNueva.add(ventaD);
-                }
-            }
-            listaLibrosDeVenta.clear();
-            listaLibrosDeVenta = listaNueva;
-        }else{
-            JOptionPane.showMessageDialog(null, "El libro que quiere modificar no está en la lista.");
-        }
-    }
-    
     private void btnAceptarBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarBuscarLibroActionPerformed
         if(libSeleccionado.getIdlibro() > 0){
-            if(!yaEstaElLibroEnLaLista(libSeleccionado.getIdlibro())){
-                int cantLib = 0;
-                try {
-                    cantLib = Integer.parseInt(txtCantidadDelLibro.getText());
-                    if(cantLib < 1){
-                        JOptionPane.showMessageDialog(null, "La cantidad de unidades del libro, debe ser mayor a 0");
-                    }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Ocurrió un error obteniendo la cantidad de unidades pedidas del libro. (Err:"+e+")");
-                    txtCantidadDelLibro.requestFocus();
+            int cantLib = 0;
+            try {
+                cantLib = Integer.parseInt(txtCantidadDelLibro.getText());
+                if(cantLib < 1){
+                    JOptionPane.showMessageDialog(null, "La cantidad de unidades del libro, debe ser mayor a 0");
                 }
-                vd = new VentaDetalle();
-                vd.setLibro(libSeleccionado);//System.out.println(vd.getLibro().getIdlibro());
-                vd.setCantidad(cantLib);
-                vd.setPreciovta(libSeleccionado.getPrecio());
-    //            System.out.println("Antes");
-    //            for(VentaDetalle venD : listaLibrosDeVenta){
-    //                System.out.println(venD.getPreciovta());
-    //            }
-    //System.out.println(vd.getLibro().getIdlibro());
-                listaLibrosDeVenta.add(vd);//Antes revisar que no esté el libro ya en la lista
-    //            System.out.println("despues");
-    //            for(VentaDetalle venD : listaLibrosDeVenta){
-    //                System.out.println(venD.getLibro().getIdlibro());
-    //            }
-
-
-                CargarLibrosDeVentaGrid();
-                InicializarPanelBuscarLibro();
-                lblPrecioFinal.setText(Double.toString(CalcularTotalVenta()));
-            }else{
-                JOptionPane.showMessageDialog(null, "Ese libro ya fué agregado antes, si quiere cambiar la cantidad utilice el botón de la tabla.");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ocurrió un error obteniendo la cantidad de unidades pedidas del libro. (Err:"+e+")");
+                txtCantidadDelLibro.requestFocus();
             }
+            vd = new VentaDetalle();
+            vd.setLibro(libSeleccionado);//System.out.println(vd.getLibro().getIdlibro());
+            vd.setCantidad(cantLib);
+            vd.setPreciovta(libSeleccionado.getPrecio());
+//            System.out.println("Antes");
+//            for(VentaDetalle venD : listaLibrosDeVenta){
+//                System.out.println(venD.getPreciovta());
+//            }
+//System.out.println(vd.getLibro().getIdlibro());
+            listaLibrosDeVenta.add(vd);//Antes revisar que no esté el libro ya en la lista
+//            System.out.println("despues");
+//            for(VentaDetalle venD : listaLibrosDeVenta){
+//                System.out.println(venD.getLibro().getIdlibro());
+//            }
+            
+            
+            CargarLibrosDeVentaGrid();
+            InicializarPanelBuscarLibro();
+            lblPrecioFinal.setText(Double.toString(CalcularTotalVenta()));
         }
     }//GEN-LAST:event_btnAceptarBuscarLibroActionPerformed
 
     private void btnCancelarBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarBuscarLibroActionPerformed
         InicializarPanelBuscarLibro();
     }//GEN-LAST:event_btnCancelarBuscarLibroActionPerformed
-
-    private void tblLibrosVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLibrosVentaMouseClicked
-        int colum = tblLibrosVenta.getColumnModel().getColumnIndexAtX(evt.getX());
-        int fila = evt.getY()/tblLibrosVenta.getRowHeight();
-        int idLib = (int) tblLibrosVenta.getValueAt(tblLibrosVenta.getSelectedRow(), 0);
-        
-        if((fila >= 0 && fila < tblLibrosVenta.getRowCount()) && (colum >= 0 && colum < tblLibrosVenta.getColumnCount())){
-            Object value =  tblLibrosVenta.getValueAt(fila, colum);
-            if(value instanceof JButton){
-                ((JButton)value).doClick();
-                JButton boton = (JButton)value;
-                
-                if(boton.getName().equals("btnQuitarLibro")){
-                    //System.out.println("btn quitar");
-                    quitarLibroDeLaLista(idLib);
-                    
-                }
-                if(boton.getName().equals("btnModifLibro")){
-                    //System.out.println("btn modificar");
-                    int cantActual = (int) tblLibrosVenta.getValueAt(tblLibrosVenta.getSelectedRow(), 7);
-                    nuevaCant = 1;
-                    
-                    ModificarCantUnidadesVentaUI pnlCant = new ModificarCantUnidadesVentaUI(null, true, cantActual);
-                    pnlCant.setLocationRelativeTo(null);
-                    pnlCant.setVisible(true);
-                    if(pnlCant.todoOK){
-                        nuevaCant = pnlCant.newCantidad;
-                        //System.out.println(nuevaCant);
-                        modificarLibroDeLaLista(idLib, nuevaCant);
-                    }
-                }
-
-                //System.out.println(idLib);
-            }
-            CargarLibrosDeVentaGrid();
-            lblPrecioFinal.setText(Double.toString(CalcularTotalVenta()));
-        }
-    }//GEN-LAST:event_tblLibrosVentaMouseClicked
-
-    private void lblBotonCargarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBotonCargarClienteMouseClicked
-        BuscarClienteParaVentaUI ventanaCargarCli = new BuscarClienteParaVentaUI(null, true);
-        ventanaCargarCli.setLocationRelativeTo(null);
-        ventanaCargarCli.setVisible(true);
-        
-        
-    }//GEN-LAST:event_lblBotonCargarClienteMouseClicked
     
     private boolean campoDNILleno(){
         boolean lleno = true;
@@ -1265,18 +1089,6 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
         }
         return montoVenta;
     }
-    
-    DefaultTableModel model = new DefaultTableModel() {
-
-            boolean[] canEdit = new boolean[]{
-                    false, false, false, false, false,false,false, true, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-    };
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptarBuscarCliente;
@@ -1290,7 +1102,6 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
     private javax.swing.JButton btnCompletarVenta;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblBotonCargarCliente;
     private javax.swing.JLabel lblCantidadDelLibro;
     private javax.swing.JLabel lblDatosSeleccionados1;
     private javax.swing.JLabel lblDatosSeleccionados2;
@@ -1317,7 +1128,6 @@ public class VentaPantallaPrincipalBorrarloUI extends javax.swing.JDialog {
     private javax.swing.JPanel pnlBuscarLibro;
     private javax.swing.JPanel pnlCliente;
     private javax.swing.JPanel pnlCont;
-    private javax.swing.JPanel pnlDatosEncabezado;
     private javax.swing.JPanel pnlEncabezado;
     private javax.swing.JPanel pnlFondoPP;
     private javax.swing.JPanel pnlLibrosVenta;
