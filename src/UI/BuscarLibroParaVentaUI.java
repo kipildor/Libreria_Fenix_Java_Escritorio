@@ -484,7 +484,7 @@ public class BuscarLibroParaVentaUI extends javax.swing.JDialog {
         if(lblBotonAceptar.isEnabled()){
             int cantUnidades = 0;
             try {
-                cantUnidades = ((int)(tblResultLibros.getValueAt(tblResultLibros.getSelectedRow(), 0)));
+                cantUnidades = Integer.parseInt(txtCantidad.getText());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Ocurrió un error con la cantidad de unidades. (Err:"+e+")");
             }

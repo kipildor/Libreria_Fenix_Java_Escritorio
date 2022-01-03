@@ -111,6 +111,7 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         
         colores.ColorDeBotonLabelPantalla(lblBotonCargarCliente);
         colores.ColorDeBotonLabelPantalla(lblBotonBuscarLibro);
+        colores.ColorDeBotonLabelPantalla(lblBotonCompletarVenta);
     }
     
     public void InicializarPanelClienteEnVenta(){
@@ -333,24 +334,24 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         lblNroDocCliente = new javax.swing.JLabel();
         lblBotonCargarCliente = new javax.swing.JLabel();
         pnlLibrosVenta = new javax.swing.JPanel();
-        btnBuscarLibro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLibrosVenta = new javax.swing.JTable();
         lblTextoPreciofinal = new javax.swing.JLabel();
         lblPrecioFinal = new javax.swing.JLabel();
-        btnCompletarVenta = new javax.swing.JButton();
         lblBotonBuscarLibro = new javax.swing.JLabel();
+        lblBotonCompletarVenta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(153, 153, 255));
-        setMaximumSize(new java.awt.Dimension(820, 980));
-        setMinimumSize(new java.awt.Dimension(820, 980));
+        setMaximumSize(new java.awt.Dimension(820, 680));
+        setMinimumSize(new java.awt.Dimension(820, 680));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(820, 980));
+        setPreferredSize(new java.awt.Dimension(820, 680));
 
-        pnlFondoPP.setMinimumSize(new java.awt.Dimension(820, 980));
-        pnlFondoPP.setPreferredSize(new java.awt.Dimension(820, 980));
+        pnlFondoPP.setMaximumSize(new java.awt.Dimension(820, 680));
+        pnlFondoPP.setMinimumSize(new java.awt.Dimension(820, 680));
+        pnlFondoPP.setPreferredSize(new java.awt.Dimension(820, 680));
         pnlFondoPP.setLayout(new java.awt.BorderLayout());
 
         pnlEncabezado.setMaximumSize(new java.awt.Dimension(820, 40));
@@ -370,6 +371,17 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         lblXCerrar.setMaximumSize(new java.awt.Dimension(40, 40));
         lblXCerrar.setMinimumSize(new java.awt.Dimension(40, 40));
         lblXCerrar.setPreferredSize(new java.awt.Dimension(40, 40));
+        lblXCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblXCerrarMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblXCerrarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblXCerrarMouseEntered(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlEncabezadoLayout = new javax.swing.GroupLayout(pnlEncabezado);
         pnlEncabezado.setLayout(pnlEncabezadoLayout);
@@ -471,14 +483,6 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         pnlLibrosVenta.setBackground(new java.awt.Color(204, 255, 255));
         pnlLibrosVenta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnBuscarLibro.setText("Buscar Libro");
-        btnBuscarLibro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarLibroActionPerformed(evt);
-            }
-        });
-        pnlLibrosVenta.add(btnBuscarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
-
         tblLibrosVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -490,6 +494,7 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblLibrosVenta.setRowHeight(20);
         tblLibrosVenta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblLibrosVentaMouseClicked(evt);
@@ -497,24 +502,15 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tblLibrosVenta);
 
-        pnlLibrosVenta.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 70, 730, 114));
+        pnlLibrosVenta.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 70, 730, 140));
 
         lblTextoPreciofinal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTextoPreciofinal.setText("Precio final     $");
-        pnlLibrosVenta.add(lblTextoPreciofinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, -1, -1));
+        pnlLibrosVenta.add(lblTextoPreciofinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, -1, -1));
 
         lblPrecioFinal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblPrecioFinal.setText("0,00");
-        pnlLibrosVenta.add(lblPrecioFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, 123, -1));
-
-        btnCompletarVenta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btnCompletarVenta.setText("Completar Venta");
-        btnCompletarVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompletarVentaActionPerformed(evt);
-            }
-        });
-        pnlLibrosVenta.add(btnCompletarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
+        pnlLibrosVenta.add(lblPrecioFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, 123, -1));
 
         lblBotonBuscarLibro.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblBotonBuscarLibro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -524,8 +520,31 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBotonBuscarLibroMouseClicked(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBotonBuscarLibroMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBotonBuscarLibroMouseEntered(evt);
+            }
         });
         pnlLibrosVenta.add(lblBotonBuscarLibro, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 190, 40));
+
+        lblBotonCompletarVenta.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblBotonCompletarVenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBotonCompletarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Iconos_40px/pay.png"))); // NOI18N
+        lblBotonCompletarVenta.setText("Realizar Venta");
+        lblBotonCompletarVenta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBotonCompletarVentaMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBotonCompletarVentaMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBotonCompletarVentaMouseEntered(evt);
+            }
+        });
+        pnlLibrosVenta.add(lblBotonCompletarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 280, 50));
 
         javax.swing.GroupLayout pnlContLayout = new javax.swing.GroupLayout(pnlCont);
         pnlCont.setLayout(pnlContLayout);
@@ -566,19 +585,12 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(pnlFondoPP, javax.swing.GroupLayout.PREFERRED_SIZE, 1061, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlFondoPP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarLibroActionPerformed
-//        libSeleccionado.setIdlibro(0);        
-//
-//        pnlBuscarLibro.setVisible(true);
-//        txtNombreDelLibro.requestFocus();
-    }//GEN-LAST:event_btnBuscarLibroActionPerformed
     
     private boolean camposLlenos(){//Validar entradas
         boolean llenos = true;
@@ -601,67 +613,6 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         return llenos;
     }
     
-    private void btnCompletarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompletarVentaActionPerformed
-        if(camposLlenos()){
-            VentaDAO vDAO = new VentaDAO();
-            double montoTotal = 0;
-            montoTotal = CalcularTotalVenta();
-            
-            //verificación extra desde acá
-            int cantFilasTabla = tblLibrosVenta.getRowCount();
-            int cantRegLista = listaLibrosDeVenta.size();
-            if(cantFilasTabla != cantRegLista){
-                JOptionPane.showMessageDialog(null, "Ocurrió un error no coincide la cantidad de filas de la tabla con la lista");
-            }
-            //verificación extra hasta acá
-//            for (int z = 0; z < tblLibrosVenta.getRowCount(); z++) {
-//                int cant = (int) tblLibrosVenta.getValueAt(z, 7);
-//                double preUnit = (double) tblLibrosVenta.getValueAt(z, 8);
-//                montoTotal += (cant * preUnit);
-//            }
-            
-            long numComp = vDAO.ObtenerNroComprobante(txtNumComprobante.getText());
-            if(numComp > 0){
-                Venta v = new Venta();
-                v.setNrocomprobante(numComp);
-                v.setCliente(c);
-                //la fecha queda automatica en el insert del SQL  NOW()
-                v.setMontototal(montoTotal);
-                if(vDAO.CrearVenta(v) > 0){
-                    //JOptionPane.showMessageDialog(null, "La venta se creó con exito");
-                    //int idV = vDAO.getIDVentaByNroComprobante(Long.parseLong(txtNumComprobante.getText()));
-                    //int idV = vDAO.getIDVentaByNroComprobante(986);
-                    //JOptionPane.showMessageDialog(null, idV);
-                    v.setIdventas(vDAO.getIDVentaByNroComprobante(numComp));
-                    VentaDetalleDAO vdDAO = new VentaDetalleDAO();
-                    boolean erroresDetalles = false;
-                    int contInserts = 0;
-                    //for(int k = 0; k < tblLibrosVenta.getRowCount(); k++){
-                    for (VentaDetalle venDet : listaLibrosDeVenta){
-                        //VentaDetalle vd = new VentaDetalle();
-                        venDet.setVenta(v);
-
-
-                        if((vdDAO.crearDetallesDeVenta(venDet)) > 0){
-                            contInserts++;
-                        }else{
-                            erroresDetalles = true;
-                        }
-                    }
-                    if(cantFilasTabla != contInserts){
-                        JOptionPane.showMessageDialog(null, "No se guardaron todos los items de la venta.");
-                    }
-                    if(!erroresDetalles){
-                        JOptionPane.showMessageDialog(null, "Los items de la venta fueron agregados con exito.");
-                        dispose();
-                    }
-                }
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Hay datos sin llenar.");
-        }
-    }//GEN-LAST:event_btnCompletarVentaActionPerformed
-
     private boolean yaEstaElLibroEnLaLista(int idLibro){
         boolean existe = false;
         for (VentaDetalle ventaD : listaLibrosDeVenta) {
@@ -783,13 +734,107 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         vd = panelBusqLib.vdL;
         
         if(vd.getLibro().getIdlibro()> 0){
-            //cargar elemento a la tabla y a una lista
-            listaLibrosDeVenta.add(vd);
-            CargarLibrosDeVentaGrid();
-//            montoVenta += vd.getCantidad() * vd.getPreciovta();
-//            lblPrecioFinal.setText(Double.toString(montoVenta));
+            if(!(yaEstaElLibroEnLaLista(vd.getLibro().getIdlibro()))){
+                //cargar elemento a la tabla y a una lista
+                listaLibrosDeVenta.add(vd);
+                CargarLibrosDeVentaGrid();
+    //            montoVenta += vd.getCantidad() * vd.getPreciovta();
+    //            lblPrecioFinal.setText(Double.toString(montoVenta));
+                lblPrecioFinal.setText(Double.toString(CalcularTotalVenta()));
+            }else{
+                JOptionPane.showMessageDialog(null, "Ese libro ya está en la lista.");
+            }
         }
     }//GEN-LAST:event_lblBotonBuscarLibroMouseClicked
+
+    private void lblXCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblXCerrarMouseClicked
+        dispose();
+    }//GEN-LAST:event_lblXCerrarMouseClicked
+
+    private void lblXCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblXCerrarMouseEntered
+        colores.ColorDeXParaCerrarOver(lblXCerrar);
+    }//GEN-LAST:event_lblXCerrarMouseEntered
+
+    private void lblXCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblXCerrarMouseExited
+        colores.ColorDeXParaCerrar(lblXCerrar);
+    }//GEN-LAST:event_lblXCerrarMouseExited
+
+    private void lblBotonBuscarLibroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBotonBuscarLibroMouseEntered
+        colores.ColorDeBotonLabelPantallaOver(lblBotonBuscarLibro);
+    }//GEN-LAST:event_lblBotonBuscarLibroMouseEntered
+
+    private void lblBotonBuscarLibroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBotonBuscarLibroMouseExited
+        colores.ColorDeBotonLabelPantalla(lblBotonBuscarLibro);
+    }//GEN-LAST:event_lblBotonBuscarLibroMouseExited
+
+    private void lblBotonCompletarVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBotonCompletarVentaMouseClicked
+        if(camposLlenos()){
+            VentaDAO vDAO = new VentaDAO();
+            double montoTotal = 0;
+            montoTotal = CalcularTotalVenta();
+            
+            //verificación extra desde acá
+            int cantFilasTabla = tblLibrosVenta.getRowCount();
+            int cantRegLista = listaLibrosDeVenta.size();
+            if(cantFilasTabla != cantRegLista){
+                JOptionPane.showMessageDialog(null, "Ocurrió un error no coincide la cantidad de filas de la tabla con la lista");
+            }
+            //verificación extra hasta acá
+//            for (int z = 0; z < tblLibrosVenta.getRowCount(); z++) {
+//                int cant = (int) tblLibrosVenta.getValueAt(z, 7);
+//                double preUnit = (double) tblLibrosVenta.getValueAt(z, 8);
+//                montoTotal += (cant * preUnit);
+//            }
+            
+            long numComp = vDAO.ObtenerNroComprobante(txtNumComprobante.getText());
+            if(numComp > 0){
+                Venta v = new Venta();
+                v.setNrocomprobante(numComp);
+                v.setCliente(c);
+                //la fecha queda automatica en el insert del SQL  NOW()
+                v.setMontototal(montoTotal);
+                if(vDAO.CrearVenta(v) > 0){
+                    //JOptionPane.showMessageDialog(null, "La venta se creó con exito");
+                    //int idV = vDAO.getIDVentaByNroComprobante(Long.parseLong(txtNumComprobante.getText()));
+                    //int idV = vDAO.getIDVentaByNroComprobante(986);
+                    //JOptionPane.showMessageDialog(null, idV);
+                    v.setIdventas(vDAO.getIDVentaByNroComprobante(numComp));
+                    VentaDetalleDAO vdDAO = new VentaDetalleDAO();
+                    boolean erroresDetalles = false;
+                    int contInserts = 0;
+                    //for(int k = 0; k < tblLibrosVenta.getRowCount(); k++){
+                    for (VentaDetalle venDet : listaLibrosDeVenta){
+                        //VentaDetalle vd = new VentaDetalle();
+                        venDet.setVenta(v);
+
+
+                        if((vdDAO.crearDetallesDeVenta(venDet)) > 0){
+                            contInserts++;
+                        }else{
+                            erroresDetalles = true;
+                        }
+                    }
+                    if(cantFilasTabla != contInserts){
+                        JOptionPane.showMessageDialog(null, "No se guardaron todos los items de la venta.");
+                    }
+                    if(!erroresDetalles){
+                        JOptionPane.showMessageDialog(null, "Los items de la venta fueron agregados con exito.");
+                        dispose();
+                    }
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Hay datos sin llenar.");
+        }
+    }//GEN-LAST:event_lblBotonCompletarVentaMouseClicked
+
+    private void lblBotonCompletarVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBotonCompletarVentaMouseEntered
+        colores.ColorDeBotonLabelPantallaOver(lblBotonCompletarVenta);
+    }//GEN-LAST:event_lblBotonCompletarVentaMouseEntered
+
+    private void lblBotonCompletarVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBotonCompletarVentaMouseExited
+        colores.ColorDeBotonLabelPantalla(lblBotonCompletarVenta);
+    }//GEN-LAST:event_lblBotonCompletarVentaMouseExited
     
 //    private boolean campoDNILleno(){
 //        boolean lleno = true;
@@ -830,12 +875,11 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscarLibro;
-    private javax.swing.JButton btnCompletarVenta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBotonBuscarLibro;
     private javax.swing.JLabel lblBotonCargarCliente;
+    private javax.swing.JLabel lblBotonCompletarVenta;
     private javax.swing.JLabel lblEmailCliente;
     private javax.swing.JLabel lblFechaActual;
     private javax.swing.JLabel lblIDCliente;
