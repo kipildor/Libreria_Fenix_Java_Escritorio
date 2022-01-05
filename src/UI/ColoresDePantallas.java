@@ -7,6 +7,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.border.*;
+
 
 public class ColoresDePantallas {
     Color fondoMenuVerticalIzq = new Color(0, 0, 0);//Panel de Menú, el mismo se usa para el fondo de los botones
@@ -42,6 +44,14 @@ public class ColoresDePantallas {
     //Color de los label invisibles para detalles al hacer click en libro
     Color fondoLabelDetalles = new Color(43, 42, 51);
     Color letraLabelDetalles = new Color(255, 255, 255);
+    
+    //Color de paneles de Venta
+    Color fondoPanelVenta1 = new Color(69, 71, 72);
+    Color fondoPanelVenta2 = new Color(20, 20, 20);
+    Color bordePanelVenta1 = new Color(200, 200, 200);
+    Color bordePanelVenta2 = new Color(255, 255, 255);
+    Border tipoDeBordePanel1 = new EtchedBorder(bordePanelVenta1, bordePanelVenta1);
+    Border tipoDeBordePanel2 = new EtchedBorder(bordePanelVenta2, bordePanelVenta2);
     
     /*****************************************
      * ***************************************
@@ -163,5 +173,15 @@ public class ColoresDePantallas {
     public void ColorLabelDeDetalles(JLabel lbl){
         lbl.setBackground(fondoLabelDetalles);
         lbl.setForeground(letraLabelDetalles);
+    }
+    
+    //Paneles de Venta
+    public void ColorDePanelEncabezadoVenta(JPanel pnl){
+        pnl.setBackground(fondoPanelVenta1);
+        pnl.setBorder(tipoDeBordePanel1);
+    }
+    public void ColorDePanelesVenta(JPanel pnl){
+        pnl.setBackground(fondoPanelVenta2);
+        pnl.setBorder(tipoDeBordePanel2);
     }
 }

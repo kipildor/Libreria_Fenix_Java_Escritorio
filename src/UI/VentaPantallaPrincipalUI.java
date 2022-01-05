@@ -58,12 +58,8 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         GrillaBase();
         inicializarPantalla();
         
-//        Image miIcono = Toolkit.getDefaultToolkit().getImage("/Images/LogoSolo_FondoSombra_icono.ico");
-//        parent.setIconImage(miIcono);
         setTitle("Ventas");
         setIconImage(getIconImage());
-//        Container contenedor = getContentPane();
-//        p.setRuta("/Images/librosAbiertos.jpg");
     }
     
     public VentaPantallaPrincipalUI(java.awt.Frame parent, boolean modal, Cliente cli) {
@@ -74,8 +70,6 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         GrillaBase();
         inicializarPantalla();
         
-//        Image miIcono = Toolkit.getDefaultToolkit().getImage("/Images/LogoSolo_FondoSombra_icono.ico");
-//        parent.setIconImage(miIcono);
         setTitle("Ventas");
         setIconImage(getIconImage());
     }
@@ -87,27 +81,36 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
     
     public void inicializarPantalla(){
         InicializarPanelClienteEnVenta();
-//        pnlBuscarCliente.setVisible(false);
-//        txtDocumento.setText("");
-//        btnAceptarBuscarCliente.setEnabled(false);
-//        pnlSubPanelBuscarCliente.setVisible(false);
-        
+
         listaLibrosDeVenta.clear();//elimino los elementos de la lista, la dejo vacia
-//        InicializarPanelBuscarLibro();
-//        pnlBuscarLibro.setVisible(false);
+
         /*** inicializar grilla venta vacias ***/
         GrillaBase();
         
         lblPrecioFinal.setText("0,00");
-        
-        //ImagenFondo imgLbl = new ImagenFondo();
-        //imgLbl.pintarImagenEnLabel(lblLogo, "/Images/LogoTextoAbajo_FondoTransparente.png");
         
         //txtNumComprobante.setText("00001 - " + NativeString.substr("000000" + String.valueOf(ventasdao.getMaxNumCbte() + 1), 1, 8));
         VentaDAO vDAO = new VentaDAO();
         txtNumComprobante.setText(vDAO.CadenaComprobante(vDAO.UltimoNroComprobanteMasUno()));
         
         //Colores
+        colores.ColorDeEncabezadoDePantalla(pnlEncabezado);
+        colores.ColorDeXParaCerrar(lblXCerrar);
+        colores.ColorDeCuerpoDeLaPantalla(pnlCont);
+        
+        colores.ColorDePanelEncabezadoVenta(pnlDatosEncabezado);
+        colores.ColorDePanelesVenta(pnlCliente);
+        colores.ColorDePanelesVenta(pnlLibrosVenta);
+        
+        colores.ColorDeLabelDeLaPantalla(lblFechaActual);
+        colores.ColorDeLabelDeLaPantalla(lblNumComprobante);
+        colores.ColorDeLabelDeLaPantalla(lblTituloSeccionCliente);
+        colores.ColorDeLabelDeLaPantalla(lblNombreCliente);
+        colores.ColorDeLabelDeLaPantalla(lblEmailCliente);
+        colores.ColorDeLabelDeLaPantalla(lblTipoDocumentoCliente);
+        colores.ColorDeLabelDeLaPantalla(lblNroDocCliente);
+        colores.ColorDeLabelDeLaPantalla(lblTextoPreciofinal);
+        colores.ColorDeLabelDeLaPantalla(lblPrecioFinal);
         
         colores.ColorDeBotonLabelPantalla(lblBotonCargarCliente);
         colores.ColorDeBotonLabelPantalla(lblBotonBuscarLibro);
@@ -130,58 +133,6 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         lblTipoDocumentoCliente.setText("Documento: "+ c.getTipodocumento().getDescripcion());
         lblNroDocCliente.setText("n° "+ Long.toString(c.getNrodocumento()));
     }
-    
-//    private void InicializarPanelBuscarLibro(){
-//        lblDatosSeleccionados1.setText("");
-//        lblDatosSeleccionados2.setText("");
-//        lblDatosSeleccionados3.setText("");
-//        txtCantidadDelLibro.setText("0");
-//        txtCantidadDelLibro.setEnabled(false);
-//        btnAceptarBuscarLibro.setEnabled(false);
-//        pnlSubPanelBuscarLibro.setVisible(false);
-//        txtNombreDelLibro.setText("");
-//        /*** inicializar grilla vacia  ***/
-//        GrillaResultLibrosVacia();
-//        pnlBuscarLibro.setVisible(false);
-//        //l.setIdlibro(0);//¿es necesario?????
-//    }
-    
-//    private void GrillaResultLibrosVacia() {
-//        DefaultTableModel modelo = new DefaultTableModel();
-//        modelo.addColumn("ID del Libro");  // Acá definimos las Columnas del Modelo
-//        modelo.addColumn("ISBN");
-//        modelo.addColumn("Nombre del Libro");
-//        modelo.addColumn("Autor");
-//        modelo.addColumn("Páginas");
-//        modelo.addColumn("Editorial");
-//        modelo.addColumn("Fecha de Public");
-//        modelo.addColumn("Precio");
-//        modelo.addColumn("ID Tema");
-//        modelo.addColumn("Género");
-//        // Acá cargamos las FILAS del Modelo
-//        Object[] datos = new Object[10];// 
-//        
-//        tblResultLibros.setModel(modelo);
-//        tblResultLibros.getColumnModel().getColumn(0).setMaxWidth(0);
-//        tblResultLibros.getColumnModel().getColumn(0).setMinWidth(0);
-//        tblResultLibros.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
-//        tblResultLibros.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
-//        
-//        tblResultLibros.getColumnModel().getColumn(4).setMaxWidth(0);
-//        tblResultLibros.getColumnModel().getColumn(4).setMinWidth(0);
-//        tblResultLibros.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(0);
-//        tblResultLibros.getTableHeader().getColumnModel().getColumn(4).setMinWidth(0);
-//        
-//        tblResultLibros.getColumnModel().getColumn(6).setMaxWidth(0);
-//        tblResultLibros.getColumnModel().getColumn(6).setMinWidth(0);
-//        tblResultLibros.getTableHeader().getColumnModel().getColumn(6).setMaxWidth(0);
-//        tblResultLibros.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
-//        
-//        tblResultLibros.getColumnModel().getColumn(8).setMaxWidth(0);
-//        tblResultLibros.getColumnModel().getColumn(8).setMinWidth(0);
-//        tblResultLibros.getTableHeader().getColumnModel().getColumn(8).setMaxWidth(0);
-//        tblResultLibros.getTableHeader().getColumnModel().getColumn(8).setMinWidth(0);  
-//    }
         
     private void CargarLibrosDeVentaGrid() {
         tblLibrosVenta.setDefaultRenderer(Object.class, new Render());
@@ -241,28 +192,10 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         
         tblLibrosVenta.setModel(modelo);
         
-        //JButton btnBorrarLibro = new JButton();
-        //textField.setEditable(true);
-        //txtCeldaCantEjemplares.setText(Integer.toString(book.getCantidad()));
-        //(tblLibrosVenta.getColumnModel().getColumn(2)).setCellEditor(new DefaultCellEditor(btnBorrarLibro));
-        
-        
-//        JComboBox comboBox = new JComboBox();
-//        for(int x = 0; x < 15; x++){
-//            comboBox.addItem(x+1);
-//        }
-//        comboBox.addItem("Lima");
-//        comboBox.addItem("Arequipa");
-//        comboBox.addItem("Huaunuco");
-//        comboBox.addItem("Iquitos");
-//        comboBox.addItem("Madre de Dios");
-//        comboBox.addItem("Trujillo");
-        
-        
-//        tblLibrosVenta.getColumnModel().getColumn(0).setMaxWidth(0);
-//        tblLibrosVenta.getColumnModel().getColumn(0).setMinWidth(0);
-//        tblLibrosVenta.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
-//        tblLibrosVenta.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
+        tblLibrosVenta.getColumnModel().getColumn(0).setMaxWidth(0);
+        tblLibrosVenta.getColumnModel().getColumn(0).setMinWidth(0);
+        tblLibrosVenta.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
+        tblLibrosVenta.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
         
         tblLibrosVenta.getColumnModel().getColumn(1).setMaxWidth(0);
         tblLibrosVenta.getColumnModel().getColumn(1).setMinWidth(0);
@@ -324,7 +257,7 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         lblNumComprobante = new javax.swing.JLabel();
         txtNumComprobante = new javax.swing.JTextField();
         lblFechaActual = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblImagenFenix = new javax.swing.JLabel();
         pnlCliente = new javax.swing.JPanel();
         lblTituloSeccionCliente = new javax.swing.JLabel();
         lblIDCliente = new javax.swing.JLabel();
@@ -370,6 +303,7 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         lblXCerrar.setText("X");
         lblXCerrar.setMaximumSize(new java.awt.Dimension(40, 40));
         lblXCerrar.setMinimumSize(new java.awt.Dimension(40, 40));
+        lblXCerrar.setOpaque(true);
         lblXCerrar.setPreferredSize(new java.awt.Dimension(40, 40));
         lblXCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -433,11 +367,12 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         lblFechaActual.setText("Fecha");
         pnlDatosEncabezado.add(lblFechaActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 20, 250, -1));
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LogoTextoAbajo_FondoTransparente_mediano.png"))); // NOI18N
-        pnlDatosEncabezado.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 210, 80));
+        lblImagenFenix.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImagenFenix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/LogoTextoAbajo_FondoTransparente_mediano.png"))); // NOI18N
+        pnlDatosEncabezado.add(lblImagenFenix, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 210, 80));
 
         pnlCliente.setBackground(new java.awt.Color(204, 204, 255));
+        pnlCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 0, 0), null));
         pnlCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTituloSeccionCliente.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -704,12 +639,7 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         BuscarClienteParaVentaUI panelBusqDoc = new BuscarClienteParaVentaUI(null, true);
         panelBusqDoc.setLocationRelativeTo(null);
         panelBusqDoc.setVisible(true);
-        
-//        pnlBuscarCliente.setVisible(true);
-//        txtDocumento.setText("");
-//        txtDocumento.requestFocus();
-//        btnAceptarBuscarCliente.setEnabled(false);
-//        pnlSubPanelBuscarCliente.setVisible(false);
+
         c = panelBusqDoc.cli;
         if(c.getIdcliente() > 0){
             CargarClienteEnVenta(c);
@@ -794,10 +724,7 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
                 //la fecha queda automatica en el insert del SQL  NOW()
                 v.setMontototal(montoTotal);
                 if(vDAO.CrearVenta(v) > 0){
-                    //JOptionPane.showMessageDialog(null, "La venta se creó con exito");
-                    //int idV = vDAO.getIDVentaByNroComprobante(Long.parseLong(txtNumComprobante.getText()));
-                    //int idV = vDAO.getIDVentaByNroComprobante(986);
-                    //JOptionPane.showMessageDialog(null, idV);
+
                     v.setIdventas(vDAO.getIDVentaByNroComprobante(numComp));
                     VentaDetalleDAO vdDAO = new VentaDetalleDAO();
                     boolean erroresDetalles = false;
@@ -836,22 +763,6 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
         colores.ColorDeBotonLabelPantalla(lblBotonCompletarVenta);
     }//GEN-LAST:event_lblBotonCompletarVentaMouseExited
     
-//    private boolean campoDNILleno(){
-//        boolean lleno = true;
-//        if(txtDocumento.getText().isEmpty()){
-//            lleno = false;
-//        }
-//        return lleno;
-//    }
-    
-//    private boolean campoNombreLibroLleno(){
-//        boolean lleno = true;
-//        if(txtNombreDelLibro.getText().isEmpty()){
-//            lleno = false;
-//        }
-//        return lleno;
-//    }
-    
     private double CalcularTotalVenta(){
         double montoVenta = 0;
         for (VentaDetalle fila : listaLibrosDeVenta) {
@@ -875,7 +786,6 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBotonBuscarLibro;
     private javax.swing.JLabel lblBotonCargarCliente;
@@ -883,6 +793,7 @@ public class VentaPantallaPrincipalUI extends javax.swing.JDialog {
     private javax.swing.JLabel lblEmailCliente;
     private javax.swing.JLabel lblFechaActual;
     private javax.swing.JLabel lblIDCliente;
+    private javax.swing.JLabel lblImagenFenix;
     private javax.swing.JLabel lblLogoEncabezado;
     private javax.swing.JLabel lblNombreCliente;
     private javax.swing.JLabel lblNroDocCliente;

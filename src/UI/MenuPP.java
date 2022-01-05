@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 public class MenuPP extends JFrame {
     ImagenFondo p = new ImagenFondo();
     ColoresDePantallas colores = new ColoresDePantallas();
+    
     public MenuPP() {
         initComponents();
         this.setVisible(true);
@@ -75,7 +76,6 @@ public class MenuPP extends JFrame {
         lblGenerosLiterarios = new javax.swing.JLabel();
         lblTiposDeDocumentos = new javax.swing.JLabel();
         lblLocalidades = new javax.swing.JLabel();
-        lblVentas1 = new javax.swing.JLabel();
         pnlContEscritorioDerecha = new javax.swing.JPanel();
         pnlVerticalDerecha = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
@@ -286,26 +286,6 @@ public class MenuPP extends JFrame {
             }
         });
 
-        lblVentas1.setBackground(new java.awt.Color(0, 0, 0));
-        lblVentas1.setFont(new java.awt.Font("Ubuntu Light", 1, 28)); // NOI18N
-        lblVentas1.setForeground(new java.awt.Color(255, 255, 255));
-        lblVentas1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblVentas1.setText("VentasPaneles");
-        lblVentas1.setAlignmentX(10.0F);
-        lblVentas1.setAlignmentY(0.0F);
-        lblVentas1.setOpaque(true);
-        lblVentas1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblVentas1MouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblVentas1MouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblVentas1MouseEntered(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlContMenuVerticalLayout = new javax.swing.GroupLayout(pnlContMenuVertical);
         pnlContMenuVertical.setLayout(pnlContMenuVerticalLayout);
         pnlContMenuVerticalLayout.setHorizontalGroup(
@@ -327,8 +307,7 @@ public class MenuPP extends JFrame {
                             .addComponent(lblInformes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblLibros, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblVentas1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlContMenuVerticalLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(sepLogoYMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -362,9 +341,7 @@ public class MenuPP extends JFrame {
                 .addComponent(lblTiposDeDocumentos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblLocalidades, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(lblVentas1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(228, 228, 228))
         );
 
         pnlFondoPP.add(pnlContMenuVertical, java.awt.BorderLayout.WEST);
@@ -427,6 +404,7 @@ public class MenuPP extends JFrame {
         mnuBackup.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         mnuBackup.setMnemonic('b');
         mnuBackup.setText("BackUp");
+        mnuBackup.setEnabled(false);
         mnuSistema.add(mnuBackup);
 
         mnuSalir.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -492,6 +470,7 @@ public class MenuPP extends JFrame {
         mnuExportarVenta.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         mnuExportarVenta.setMnemonic('e');
         mnuExportarVenta.setText("Exportar");
+        mnuExportarVenta.setEnabled(false);
         mnuVentas.add(mnuExportarVenta);
 
         menuBar.add(mnuVentas);
@@ -503,6 +482,7 @@ public class MenuPP extends JFrame {
         mnuAyudaContenido.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         mnuAyudaContenido.setMnemonic('c');
         mnuAyudaContenido.setText("Contenido");
+        mnuAyudaContenido.setEnabled(false);
         mnuAyudaContenido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuAyudaContenidoActionPerformed(evt);
@@ -555,7 +535,9 @@ public class MenuPP extends JFrame {
     }//GEN-LAST:event_mnuExtrasActionPerformed
 
     private void mnuAyudaAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAyudaAcercaDeActionPerformed
-        // TODO add your handling code here:
+        AcercaDe panelAbout = new AcercaDe(this, true);
+        panelAbout.setLocationRelativeTo(null);
+        panelAbout.setVisible(true);
     }//GEN-LAST:event_mnuAyudaAcercaDeActionPerformed
 
     private void mnuClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuClientesActionPerformed
@@ -573,10 +555,10 @@ public class MenuPP extends JFrame {
     }//GEN-LAST:event_mnuIngresarVentaActionPerformed
 
     private void mnuAyudaContenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAyudaContenidoActionPerformed
-        VentaPantallaPrincipalBorrarloUI ventaPP = new VentaPantallaPrincipalBorrarloUI(this, true);
-        //VentaPantallaPrincipalV3UI ventaPP = new VentaPantallaPrincipalComboCantUI(this, true);
-        ventaPP.setLocationRelativeTo(null);
-        ventaPP.setVisible(true);
+//        VentaPantallaPrincipalBorrarloUI ventaPP = new VentaPantallaPrincipalBorrarloUI(this, true);
+//        //VentaPantallaPrincipalV3UI ventaPP = new VentaPantallaPrincipalComboCantUI(this, true);
+//        ventaPP.setLocationRelativeTo(null);
+//        ventaPP.setVisible(true);
     }//GEN-LAST:event_mnuAyudaContenidoActionPerformed
 
     private void mnuInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInformesActionPerformed
@@ -586,7 +568,7 @@ public class MenuPP extends JFrame {
     }//GEN-LAST:event_mnuInformesActionPerformed
 
     private void lblVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVentasMouseClicked
-        VentaPantallaPrincipalBotonesGrillaUI ventaPP = new VentaPantallaPrincipalBotonesGrillaUI(this, true);
+        VentaPantallaPrincipalUI ventaPP = new VentaPantallaPrincipalUI(this, true);
         ventaPP.setLocationRelativeTo(null);
         ventaPP.setVisible(true);
     }//GEN-LAST:event_lblVentasMouseClicked
@@ -697,20 +679,6 @@ public class MenuPP extends JFrame {
         colores.ColorDeBoton(lblLocalidades);
     }//GEN-LAST:event_lblLocalidadesMouseExited
 
-    private void lblVentas1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVentas1MouseClicked
-        VentaPantallaPrincipalUI ventaPP = new VentaPantallaPrincipalUI(this, true);
-        ventaPP.setLocationRelativeTo(null);
-        ventaPP.setVisible(true);
-    }//GEN-LAST:event_lblVentas1MouseClicked
-
-    private void lblVentas1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVentas1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblVentas1MouseExited
-
-    private void lblVentas1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVentas1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblVentas1MouseEntered
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPopupMenu.Separator jSeparator1;
@@ -724,7 +692,6 @@ public class MenuPP extends JFrame {
     private javax.swing.JLabel lblTiposDeDocumentos;
     private javax.swing.JLabel lblUsuarios;
     private javax.swing.JLabel lblVentas;
-    private javax.swing.JLabel lblVentas1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu mnuABM;
     private javax.swing.JMenu mnuAyuda;

@@ -157,6 +157,7 @@ public class VentanaDetallesDeVenta extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblDetalleItems.setRowHeight(20);
         jScrollPane1.setViewportView(tblDetalleItems);
 
         pnlContTabla.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 736, 114));

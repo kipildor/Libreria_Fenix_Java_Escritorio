@@ -175,6 +175,42 @@ public class VentaDAO extends Conexion {
         return listaV;
     }
     
+    public LinkedList<Venta> UltimasVentasReducido(){
+        //System.out.println("2_"+fecha);
+        LinkedList<Venta> listaV = new LinkedList<>();
+//        ManejarFecha castF = new ManejarFecha();
+//        java.sql.Date fechaSQL = castF.fechaUtilToSql(fecha);
+        //System.out.println("3_"+fechaSQL);
+        SQL = "SELECT idventas, nroComprobante, montototal " +//0-1-2
+            "FROM tbventas " +
+            "ORDER BY fecha DESC " +
+            "LIMIT 10";
+        Conectar();
+        try {
+            PreparedStatement ps = cn.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            if(!(rs.next())){
+                JOptionPane.showMessageDialog(null, "No se encontraron ventas.");
+            }else{
+                do{
+                    Venta v = new Venta();
+                    v.setIdventas(rs.getInt(1));
+                    v.setNrocomprobante(rs.getLong(2));
+                    //v.setFecha(fechaSQL);
+                    v.setMontototal(rs.getDouble(3));
+                    //System.out.println("4_"+rs.getInt(1));
+                    listaV.add(v);
+                }while(rs.next());
+            }
+            rs.close();
+            ps.close();
+            cn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ocurrió un error recuperando las últimas ventas. (Err:"+e+")");
+        }
+        return listaV;
+    }
+    
     public boolean ExisteLaVenta(int idVenta){
         boolean existe = false;
         SQL = "SELECT 1 FROM tbventas WHERE idventas = ? LIMIT 1";
